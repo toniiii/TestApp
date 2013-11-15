@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.helloCordova" version="2.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <access origin="http://*.preecha.in.th" />
+	<access origin="http://sd.preecha.in.th" />
+	<access origin="http://sd.preecha.in.th/submitQuestion.php" />
+	<access origin="http://sd.preecha.in.th/submitTestData.php" />
     <name>Hello Cordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
