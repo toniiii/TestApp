@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <!-- Need to get a proper redirect hooked up. Blech. -->
+    <meta name="robots" content="noindex, follow">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet"  href="script/css/jquery.mobile-1.3.2.min.css">
+    <script src="script/jquery.js"></script>
+    <script src="script/jquery.mobile-1.3.2.min.js"></script>
+
+</head>
+<body>
+<script>
+var backlog = "no";
+var backlogQuestion = "no";
+</script>
+<form method="post" name="speechDelay" id="speechDelay">
+<div id="home">
+	<div data-role="header" data-theme="a">
+		<h1></h1>
+	</div>
+    <a href="" data-role="button" data-inline="false" onclick="enterTest()">Test</a>
+    <a href="" data-role="button" data-inline="false" onclick="enterLearn()">Learn</a>
+    <a href="" data-role="button" data-inline="false" onclick="enterQuestion()">Question</a>
+    <a href="" data-role="button" data-inline="false" onclick="enterAbout()">About</a>
+</div>
+
+<div id="test">
+	<div data-role="header" data-theme="b">
+		<a href="" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true" onclick=enterHome()></a>
+		<a href="" data-role="button" data-icon="info" data-iconpos="notext" data-inline="true" onclick=showValueTest()></a>
+		<h1>Test</h1>
+	</div>
+	<div id="disclaimer">
+	<textarea name="textarea" id="textarea" style="height:150px;" readonly="true">
+		วัตถุประสงค์ของการจัดทำโปรแกรมนี้ คือ เพื่อช่วยให้ผู้เลี้ยงดู ตลอดจนผู้เกี่ยวข้องในการดูแลเด็ก สามารถประเมินพัฒนาการด้านภาษาของเด็กในช่วงอายุประมาณ 18 เดือน และให้การช่วยเหลือเบื้องต้นได้อย่างเหมาะสม โดยที่แนวทางในโปรแกรมนี้ไม่สามารถนำมาใช้เพื่อทดแทนการวินิจฉัยโดยแพทย์ได้ 
+อนึ่ง คณะผู้จัดทำจะขอทำการเก็บรวบรวมข้อมูล ที่ได้รับจากการใช้โปรแกรมนี้ เพื่อนำไปศึกษาวิจัย วิเคราะห์และนำเสนอผลงานด้านวิชาการในภาพรวมทั้งหมดเท่านั้น โดยจะไม่เผยแพร่ต่อสาธารณะเป็นรายบุคคล และจะนำผลการวิเคราะห์ดังกล่าวไปปรับปรุงโปรแกรมเพื่อให้เกิดประสิทธิภาพดียิ่งขึ้นในโอกาสต่อไป
+	</textarea>
+	<label><input type="checkbox" name="disclaimer" onclick="checkButtonDisclaimer(this);">ฉันยินยอมข้อตกลงข้างต้น</label>
+   <div style="text-align:center;">
+		<input type="button" value="Accept" data-inline="true" id="acceptButton" disabled onclick=enterBirthDate()  data-theme="b">
+		<input type="button" value="Cancel" data-inline="true">
+	</div>
+	</div>
+
+	<div id="birthDate" style="text-align:center;">
+		<h3>กรุณากรอกวันเกิดของเด็ก</h3>
+		<input type="date" data-clear-btn="true" name="birthDateBox" id="birthDateBox" value="">
+		<input type="button" value="Next" data-theme="b" id="nextbirthDate" disabled onclick="enterStep1()">
+	</div>
+	
+	<div id="step1" style="text-align:center;">
+		<h3>เด็กพูดคำที่มีความหมาย ฟังเข้าใจได้อย่างน้อย 1 คำหรือไม่?</h3>
+		<fieldset data-role="controlgroup">
+			<input type="radio" name="step1" id="step1_no" onclick="step1SelectNo()">
+			<label for="step1_no">ไม่ใช่</label>
+			<input type="radio" name="step1" id="step1_yes" onclick="step1SelectYes()">
+			<label for="step1_yes">ใช่</label>
+		</fieldset>
+		<input type="button" value="Next" data-theme="b" id="nextStep1" disabled onclick="">
+	</div>
+	
+	<div id="step2" style="text-align:center;">
+		<h3>จำนวนคำทั้งหมดที่พูดได้ประมาณ</h3>
+		<div data-role="fieldcontain" >
+			<input type="range" name="speechWord" id="speechWord" value="" min="0" max="100" onchange="checkSpeechWordValue()">
+			<label><b><font size="5">คำ</font></b></label>
+		</div>
+		<input type="button" value="Next" data-theme="b" id="nextStep2" disabled onclick="">
+	</div>
+
+	<div id="step3" style="text-align:center;">
+		<h3>เด็กสามารถพูดได้ เฉพาะคำที่ใช้เรียกคน (หรือชื่อคน) ในครอบครัว (รวมชื่อสัตว์เลี้ยง) เท่านั้น เช่น คำว่า “แม่” “พ่อ” “แพร” (ชื่อของพี่หรือน้อง) “บอล” (ชื่อของสัตว์เลี้ยง) เป็นต้น </h3>
+		<fieldset data-role="controlgroup">
+			<input type="radio" name="step3" id="step3_no" onclick="step3SelectNo()">
+			<label for="step3_no">ไม่ใช่</label>
+			<input type="radio" name="step3" id="step3_yes" onclick="step3SelectYes()">
+			<label for="step3_yes">ใช่</label>
+		</fieldset>
+		<input type="button" value="Next" data-theme="b" id="nextStep3" disabled onclick="">
+	</div>
+
+	<div id="step4" style="text-align:center;">
+		<h3>หมายถึงเด็กของท่านสามารถพูดคำที่มีความหมายอื่นๆ นอกจากคำที่ใช้เรียกคนหรือชื่อคน (รวมสัตว์เลี้ยง) ในครอบครัวได้ รวมจำนวนคำที่เด็กพูดได้โดยไม่ใช่คำเรียกชื่อคนหรือสัตว์เลี้ยงในบ้าน รวมทั้งหมด </h3>
+		<div data-role="fieldcontain" >
+			<input type="range" name="speechWordStep4" id="speechWordStep4" value="" min="0" max="100" onchange="checkSpeechWordStep4Value()">
+			<label><b><font size="5">คำ</font></b></label>
+		</div>
+		<input type="button" value="Next" data-theme="b" id="nextStep4" disabled onclick="">
+	</div>
+
+	<div id="step5">
+		<h3>ต่อไปนี้เป็นการประเมินความเข้าใจภาษาของเด็ก </h3>
+		<div id="step5_1">
+			<h4>1. เด็กมักตอบสนองโดยหันหาคนเรียก เมื่อถูกเรียกชื่อ (ควรเป็นการสังเกตในชีวิตประจำวัน ไม่ใช่ตั้งใจเรียกเพื่อทดสอบ)</h4>
+			<fieldset data-role="controlgroup">
+				<input type="radio" name="step5_1" id="step5_1_no" onclick="step5_1SelectNo()">
+				<label for="step5_1_no">ไม่ใช่ คือ มักไม่หันหาเสียงเรียกชื่อ</label>
+				<input type="radio" name="step5_1" id="step5_1_yes" onclick="step5_1SelectYes()">
+				<label for="step5_1_yes">ใช่ คือ มักหันหาเสียงเรียกชื่อ</label>
+			</fieldset>
+			<input type="button" value="Next" data-theme="b" id="nextStep5_1" disabled onclick="showStep5_2()">
+		</div>
+
+		<div id="step5_2">
+			<h4>2. บอกให้เด็กชี้ภาพดังต่อไปนี้</h4>
+			<label id="step5_2Topic"></label><br>
+			<img id="pictureHome" src="picture/home.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureHomeSelect()">
+			<img id="pictureDog" src="picture/dog.png" style="border:5px solid white; width:150px; height:150px;" onclick="pictureDogSelect()">
+			<img id="pictureWaterglass" src="picture/waterglass.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureWaterglassSelect()">
+			<img id="pictureBall" src="picture/ball.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureBallSelect()">
+			
+			<input type="button" value="เด็กไม่สามารถทำได้" id="cantStep5_2" onclick="cantStep5_2_1()">
+			<input type="button" value="Next" data-theme="b" id="nextStep5_2" disabled onclick="nextStep5_2_1()">
+		</div>
+
+		<div id="step5_3">
+			<h4>3. เด็กสามารถชี้อวัยวะต่างๆ เช่น ผม จมูก ตา หู ปาก มือ เท้า ท้อง เป็นต้น ตามที่ท่านบอกได้อย่างถูกต้องแม่นยำอย่างน้อย 1 ส่วน</h4>
+			<fieldset data-role="controlgroup">
+				<input type="radio" name="step5_3" id="step5_3_no" onclick="step5_3SelectNo()">
+				<label for="step5_3_no">ยังชี้อวัยวะตามคำบอกไม่ได้เลย</label>
+				<input type="radio" name="step5_3" id="step5_3_yes" onclick="step5_3SelectYes()">
+				<label for="step5_3_yes">ชี้อวัยวะได้อย่างถูกต้อง</label>
+			</fieldset>
+			<div id="step5_3_selection" data-role="fieldcontain">					
+				<label><b><font size="3">รวมทั้งหมด </font></b></label>
+				<input type="range" name="step5_3_yes_value" id="step5_3_yes_value" value="" min="0" max="32" onchange="checkStep5_3_yes_value()">
+				<label><b><font size="3">ส่วน</font></b></label>
+			</div>
+			<input type="button" value="Next" data-theme="b" id="nextStep5_3" disabled onclick="showStep5_4()">
+		</div>
+
+		<div id="step5_4">
+			<h4>4. เด็กสามารถทำตามคำสั่งง่ายๆโดยไม่มีท่าทางประกอบได้<br> (เช่นสั่งให้ไปหยิบของใช้จากอีกที่หนึ่งมาให้ โดยไม่ต้องชี้หรือทำท่าทางบอกร่วมด้วย)</h4>
+			<fieldset data-role="controlgroup">
+				<input type="radio" name="step5_4" id="step5_4_no" onclick="step5_4SelectNo()">
+				<label for="step5_4_no">ไม่สามารถทำได้</label>
+				<input type="radio" name="step5_4" id="step5_4_yes" onclick="step5_4SelectYes()">
+				<label for="step5_4_yes">สามารถทำได้ </label>
+			</fieldset>
+			<input type="button" value="Next" data-theme="b" id="nextStep5_4" disabled onclick="calStep5()">
+		</div>
+	</div>
+
+	<div id="step6">
+		<h3>เด็กมีทักษะความเข้าใจภาษาที่สงสัยว่าอาจจะล่าช้า กรุณาประเมินว่าเด็กมีปัจจัยดังต่อไปนี้ ที่อาจสัมพันธ์กับการได้ยินบกพร่องหรือไม่ </h3>
+		<label id="step6Choice">1. ท่านในฐานะผู้เลี้ยงดูกังวลเกี่ยวกับการได้ยินของเด็ก</label><br>
+		<fieldset data-role="controlgroup">
+			<input type="radio" name="step6" id="step6_no" onclick="step6SelectNo()">
+			<label for="step6_no">ไม่ใช่</label>
+			<input type="radio" name="step6" id="step6_yes" onclick="step6SelectYes()">
+			<label for="step6_yes">ใช่</label>
+		</fieldset>
+		<input type="button" value="Next" data-theme="b" id="nextStep6" disabled onclick="nextStep6_1()">
+	</div>
+
+	<div id="result1">
+		<h3>result1</h3>
+		<h3>สรุปว่าเด็กมีพัฒนาการด้านภาษาปกติ </h3>
+		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
+		<input type="button" value="Next" data-theme="b" id="nextResult1" onclick="enterInspectThoroughly()">
+	</div>
+
+	<div id="result2">
+		<h3>result2</h3>
+		<h3>เด็กมีพัฒนาการด้านความเข้าใจภาษาปกติสมวัย แต่พูดช้ากว่าเด็กวัยเดียวกันเล็กน้อย เด็กกลุ่มนี้มีการพยากรณ์โรคในระยะยาวที่ดี คือเกือบทั้งหมดจะสามารถพูด สื่อสารและเรียนรู้ได้ดีเหมือนเด็กวัยเดียวกันเมื่ออายุมากขึ้น อย่างไรก็ตาม หากไม่แน่ใจควรติดตามสังเกตพัฒนาการเป็นระยะ โดยเฉพาะในช่วงปฐมวัย หรือ 6 ปีแรกของชีวิต</h3>
+		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
+		<input type="button" value="Next" data-theme="b" id="nextResult2" onclick="enterInspectThoroughly()">
+	</div>
+
+	<div id="result3">
+		<h3>result3</h3>
+		<h3>เด็กยังอาจมีความเข้าใจภาษาปกติ แต่ไม่พร้อมในบางเรื่อง แนะนำให้สอนและประเมินซ้ำในช่วง 2-4 สัปดาห์หลังจากนี้ ซึ่งหากยังไม่แน่ใจว่าเด็กผิดปกติหรือไม่ ควรพิจารณาปรึกษาแพทย์ </h3>
+		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
+		<input type="button" value="Next" data-theme="b" id="nextResult3" onclick="enterInspectThoroughly()">
+	</div>
+
+	<div id="result4">
+		<h3>result4</h3>
+		<h3>เด็กไม่มีปัจจัยเสี่ยงต่อการได้ยินบกพร่อง ดังนั้นท่านควรส่งเสริมพัฒนาการ โดยเฉพาะทักษะด้านความเข้าใจภาษาเพิ่มเติม หากไม่ดีขึ้นจนมีทักษะความสามารถใกล้เคียงเด็กวัยเดียวกัน ในช่วง 1-2 เดือนข้างหน้า ควรพิจารณาปรึกษาแพทย์ </h3>
+		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
+		<input type="button" value="Next" data-theme="b" id="nextResult4" onclick="enterInspectThoroughly()">
+	</div>
+
+	<div id="result5">
+		<h3>result5</h3>
+		<h3>เด็กมีปัจจัยเสี่ยงที่อาจจะมีการได้ยินบกพร่องบางส่วน ควรพิจารณาปรึกษาแพทย์ เพื่อตรวจการได้ยินต่อไป </h3>
+		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
+		<input type="button" value="Next" data-theme="b" id="nextResult5" onclick="enterInspectThoroughly()">
+	</div>
+	
+	<div id="languageDevelopment">
+		<h3>พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</h3>
+		<label><br><b>ด้านการพูดและการสื่อสาร</b> – เด็กจะเริ่มพูดคำคุ้นเคย เช่น “พ่อ” “แม่” หรือชื่อคนในครอบครัวได้ที่อายุ 12 – 15 เดือน ต่อมาที่อายุประมาณ 18 เดือน เด็กจะเริ่มพูดคำศัพท์อื่นๆที่มีความหมาย โดยเฉพาะคำศัพท์ที่นอกเหนือจากคำซึ่งใช้เรียกคนหรือสัตว์เลี้ยงในบ้านมากขึ้นเรื่อยๆ จนกระทั่งอายุ 24 เดือน จำนวนคำศัพท์ที่พูดได้มีประมาณ 50-200 คำ และจะเริ่มนำคำมารวมกันเพื่อสื่อสารได้ เช่น “ไปเที่ยว” “ไม่เดิน” คำพูดอาจยังไม่ชัดเจนบ้าง แต่ผู้เลี้ยงดูฟังเข้าใจ ในกรณีที่เด็กยังไม่สามารถพูดเป็นคำ ที่อายุประมาณ 12-15 เดือนเป็นต้นไป เด็กมักจะสื่อสารความต้องการด้วยการใช้ภาษาท่าทางให้เห็นได้อย่างชัดเจน ได้แก่ การสบตาหรือใช้สายตาเพื่อสื่อสาร การชี้บอกความต้องการ รวมถึงการแสดงอารมณ์ผ่านสีหน้าท่าทาง<br><br>
+	<b>ด้านความเข้าใจภาษา</b> – เด็กที่อายุ 16-18 เดือน สามารถชี้อวัยวะตามสั่งได้อย่างถูกต้อง 1-3 ส่วน ทำตามคำสั่ง 1 ขั้นตอนที่ไม่มีท่าทางประกอบได้ ตลอดจนชี้รูปภาพตามคำบอกได้อย่างน้อย 1 รูป เมื่ออายุ 24 เดือน เด็กจะสามารถทำตามคำสั่ง 2 ขั้นตอนที่มีความสัมพันธ์กันได้ ชี้สิ่งต่างๆและรูปภาพตามคำบอกได้มากหลากหลาย เริ่มเข้าใจคำคุณศัพท์ที่บอกขนาด ได้แก่ ใหญ่ เล็ก ยาว สั้น และคำที่ใช้แสดงความรู้สึกได้<br><br>
+	<b>คำแนะนำในการเพิ่มทักษะด้านภาษาทั่วไป</b> : ควรพูดคุยเรื่องที่เด็กสนใจในชีวิตประจำวัน พูดสั้นๆด้วยคำพูดที่ฟังชัดเจน พยายามตั้งใจฟังในสิ่งที่เด็กพยายามสื่อสาร ไม่ว่าจะเป็นการส่งเสียงที่ไม่เป็นคำ หรือการใช้ภาษาท่าทาง เว้นจังหวะให้เด็กสื่อสารโต้ตอบบ่อยๆ ทำกิจกรรมที่ส่งเสริมพัฒนาการทางภาษาตามวัย ได้แก่ อ่านหนังสือนิทานให้ฟัง ร้องเพลง ควรหลีกเลี่ยงกิจกรรมที่ไม่ส่งเสริมการมีปฏิสัมพันธ์และการสื่อสาร เช่น การการดูรายการโทรทัศน์ การใช้คอมพิวเตอร์ หรืออุปกรณ์อื่นๆที่มีลักษณะเดียวกัน เป็นต้น<br>
+		</label>
+		<input type="button" value="Back" data-theme="b" id="backLanguageDevelopment" data-inline="true" onclick="">
+	</div>
+
+	<div id="inspectThoroughly">
+		<h3>หากท่านสนใจนำเด็กของท่านมาพบแพทย์เพื่อตรวจพัฒนาการด้านภาษาอย่างละเอียดต่อไป กรุณากรอกเบอร์โทรศัพท์ที่ท่านสะดวกให้ติดต่อกลับเพื่อทำการนัดหมาย (เฉพาะในช่วงมกราคม พ.ศ.2556 – มีนาคม พ.ศ.2557)</h3>
+		<input type="text" data-clear-btn="true" name="inspectThoroughlyPhone" id="inspectThoroughlyPhone" value="" placeholder="เบอร์โทรศัพท์">
+		<div style="text-align:center;">
+			<input type="button" value="OK" data-theme="b" id="saveInspectThoroughlyButton" data-inline="true" disabled onclick=saveInspectThoroughly()>
+			<input type="button" value="กลับสู่หน้าหลัก" data-theme="b" id="backInspectThoroughlyButton" data-inline="true"  onclick="backInspectThoroughly()">
+		</div>
+	</div>
+
+
+</div>
+
+
+<div id="learn">
+	<div data-role="header" data-theme="b">
+		<a href="" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true" onclick=enterHome()></a>
+		<h1>Learn</h1>
+	</div>
+</div>
+
+<div id="question">
+	<div data-role="header" data-theme="b">
+		<a href="" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true" onclick=enterHome()></a>
+		<h1>Question</h1>
+	</div>
+	<textarea cols="40" rows="10" name="questionMessage" id="questionMessage" placeholder="Message" data-clear-btn="true"></textarea>
+	<input type="email" data-clear-btn="true" name="questionEmail" id="questionEmail" value="" placeholder="E-mail" >
+	<div style="text-align:center;">
+		<input type="button" value="Send" data-theme="b" id="sendQuestionButton" data-icon="check" data-inline="true" disabled onclick=sendQuestion()>
+		<input type="button" value="Cancel" id="cancelQuestionButton" data-inline="true" onclick=enterHome()>
+	</div>
+</div>
+
+<div id="about">
+	<div data-role="header" data-theme="b">
+		<a href="" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true" onclick=enterHome()></a>
+		<h1>About</h1>
+	</div>
+</div>
+
+</form>
+
+<script>
+$("#test").hide();
+$("#learn").hide();
+$("#question").hide();
+$("#about").hide();
+$("#birthDate").hide();
+$("#step1").hide();
+$("#step2").hide();
+$("#step3").hide();
+$("#step4").hide();
+$("#step5").hide();
+$("#step6").hide();
+$("#result1").hide();
+$("#result2").hide();
+$("#result3").hide();
+$("#result4").hide();
+$("#result5").hide();
+$("#languageDevelopment").hide();
+$("#inspectThoroughly").hide();
+
+var questionMessageVal;
+var questionEmailVal;
+
+var birthDate;
+var step1;
+var step2;
+var step3;
+var step4;
+
+var step5Point;
+var step5_1;
+var step5_2Point;
+var step5_3;
+var step5_3_yes;
+var step5_4;
+
+var pictureHomeSelectStatus;
+var pictureDogSelectStatus;
+var pictureWaterglassSelectStatus;
+var pictureBallSelectStatus;
+
+var step5_2_1_pictureAns;
+var step5_2_2_pictureAns;
+var step5_2_3_pictureAns;
+var step5_2_4_pictureAns;
+
+var step5_2_1_select;
+var step5_2_2_select;
+var step5_2_3_select;
+var step5_2_4_select;
+
+var step6;
+var step6_1;
+var step6_2;
+var step6_3;
+var step6_4;
+var step6_5;
+var step6_6;
+var step6_7;
+var step6_8;
+var step6_9;
+var step6_10;
+
+var result;
+var inspectThoroughlyPhoneVal;
+
+function resetValueTest(){
+	birthDate = "0000-00-00";
+	step1 = "default";
+	step2 = "default";
+	step3 = "default";
+	step4 = "default";
+
+	step5Point = "default";
+	step5_1 = "default";
+	step5_2Point = "default";
+	step5_3 = "default";
+	step5_3_yes = "default";
+	step5_4 = "default";
+
+	pictureHomeSelectStatus = "default";
+	pictureDogSelectStatus = "default";
+	pictureWaterglassSelectStatus = "default";
+	pictureBallSelectStatus = "default";
+
+	step5_2_1_pictureAns = "default";
+	step5_2_2_pictureAns = "default";
+	step5_2_3_pictureAns = "default";
+	step5_2_4_pictureAns = "default";
+
+	step5_2_1_select = "default";
+	step5_2_2_select = "default";
+	step5_2_3_select = "default";
+	step5_2_4_select = "default";
+
+	step6 = "default";
+	step6_1 = "default";
+	step6_2 = "default";
+	step6_3 = "default";
+	step6_4 = "default";
+	step6_5 = "default";
+	step6_6 = "default";
+	step6_7 = "default";
+	step6_8 = "default";
+	step6_9 = "default";
+	step6_10 = "default";
+
+	result = "default";
+	inspectThoroughlyPhoneVal = "default";
+}
+
+function clearPrevSelectedTest(){
+	
+}
+
+function showValueTest(){
+	console.log("------------");
+	console.log(birthDate);
+	console.log("step1:");
+	console.log(step1);
+	console.log("step2:");
+	console.log(step2);
+	console.log("step3:");
+	console.log(step3);
+	console.log("step4:");
+	console.log(step4);
+
+	console.log("step5Point:");
+	console.log(step5Point);
+	console.log("step5_1:");
+	console.log(step5_1);
+	console.log("step5_2Point:");
+	console.log(step5_2Point);
+
+	console.log("step5_2(1-4):");
+	console.log(step5_2_1_pictureAns);
+	console.log(step5_2_2_pictureAns);
+	console.log(step5_2_3_pictureAns);
+	console.log(step5_2_4_pictureAns);
+
+	console.log("step5_2 select (1-4):");
+	console.log(step5_2_1_select);
+	console.log(step5_2_2_select);
+	console.log(step5_2_3_select);
+	console.log(step5_2_4_select);
+
+	console.log("step5_3:");
+	console.log(step5_3);
+	console.log("step5_3_yes:");
+	console.log(step5_3_yes);
+	console.log("step5_4:");
+	console.log(step5_4);
+
+	console.log("step6:");
+	console.log(step6);
+	console.log("step6 (1-10):");
+	console.log(step6_1);
+	console.log(step6_2);
+	console.log(step6_3);
+	console.log(step6_4);
+	console.log(step6_5);
+	console.log(step6_6);
+	console.log(step6_7);
+	console.log(step6_8);
+	console.log(step6_9);
+	console.log(step6_10);
+
+	console.log("Result:");
+	console.log(result);
+	console.log("Phone: ");
+	console.log(inspectThoroughlyPhoneVal);
+	console.log("------------");
+	console.log("backlog: " + backlog);
+	console.log("------------");
+}
+function LOG(){
+	var aa =  "birthDate="+birthDate+"&step1="+step1+"&step2="+step2+"&step3="+step3+"&step4="+step4+"&step5Point="+step5Point+"&step5_1="+step5_1+"&step5_2Point="+step5_2Point+"&step5_3="+step5_3+"&step5_3_yes="+step5_3_yes+"&step5_4="+step5_4+"&step5_2_1_pictureAns="+step5_2_1_pictureAns+"&step5_2_2_pictureAns="+step5_2_2_pictureAns+"&step5_2_3_pictureAns="+step5_2_3_pictureAns+"&step5_2_4_pictureAns="+step5_2_4_pictureAns+"&step5_2_1_select="+step5_2_1_select+"&step5_2_2_select="+step5_2_2_select+"&step5_2_3_select="+step5_2_3_select+"&step5_2_4_select="+step5_2_4_select+"&step6="+step6+"&step6_1="+step6_1+"&step6_2="+step6_2+"&step6_3="+step6_3+"&step6_4="+step6_4+"&step6_5="+step6_5+"&step6_6="+step6_6+"&step6_7="+step6_7+"&step6_8="+step6_8+"&step6_9="+step6_9+"&step6_10="+step6_10+"&result="+result+"&inspectThoroughlyPhoneVal="+inspectThoroughlyPhoneVal;
+	console.log(aa);
+}
+function sentData(){
+	backlog = "inProcess";
+	var data = "birthDate="+birthDate+"&step1="+step1+"&step2="+step2+"&step3="+step3+"&step4="+step4+"&step5Point="+step5Point+"&step5_1="+step5_1+"&step5_2Point="+step5_2Point+"&step5_3="+step5_3+"&step5_3_yes="+step5_3_yes+"&step5_4="+step5_4+"&step5_2_1_pictureAns="+step5_2_1_pictureAns+"&step5_2_2_pictureAns="+step5_2_2_pictureAns+"&step5_2_3_pictureAns="+step5_2_3_pictureAns+"&step5_2_4_pictureAns="+step5_2_4_pictureAns+"&step5_2_1_select="+step5_2_1_select+"&step5_2_2_select="+step5_2_2_select+"&step5_2_3_select="+step5_2_3_select+"&step5_2_4_select="+step5_2_4_select+"&step6="+step6+"&step6_1="+step6_1+"&step6_2="+step6_2+"&step6_3="+step6_3+"&step6_4="+step6_4+"&step6_5="+step6_5+"&step6_6="+step6_6+"&step6_7="+step6_7+"&step6_8="+step6_8+"&step6_9="+step6_9+"&step6_10="+step6_10+"&result="+result+"&inspectThoroughlyPhoneVal="+inspectThoroughlyPhoneVal;
+    $.ajax({
+		type: "POST",
+	 	url: "http://sd.preecha.in.th/submitTestData.php",
+		data: data,
+	 	success: function(data) {
+			if(data == "success"){	
+				location.reload();
+				alert("SUSSESS!!");
+				backlog = "no";
+			}
+			else if (data == "fail"){
+				alert("Fail!!");
+				backlog = "yes";
+			}
+			else {
+				alert("return ERROR!!!"+ data);
+				console.log(data);
+				backlog = "yes";
+			}
+		},
+		error: function(){
+			alert("ajax ERROR!!! Please try again.");
+			backlog = "yes";
+		}
+	});
+}
+
+function sentDataFunction(){
+	showValueTest();
+	console.log("sent data...");
+	sentData();
+	/*
+	var returnSentData = sentData();
+	if(returnSentData == "ok"){
+		console.log("returnSentData OK!!");
+		backlog = "no";
+	}
+	else if (returnSentData == "fail"){
+		console.log("returnSentData Fail!!");
+	}
+	else {
+		console.log("returnSentData ERROR!!!");
+	}*/
+}
+
+function checkBacklog(){
+	if(backlog == "yes"){
+		sentDataFunction();
+	}
+}
+function checkBacklogQuestion(){
+	if(backlogQuestion == "yes"){
+		sentQuestionFunction();
+	}
+}
+
+function enterHome(){
+	checkBacklog();
+	checkBacklogQuestion();
+	deselectHome();
+	$("#home").show();
+	$("#test").hide();
+	$("#learn").hide();
+	$("#question").hide();
+	$("#about").hide();
+}
+
+function deselectHome(){
+	
+}
+
+function enterTest(){
+	$("#home").hide();
+	$("#test").show();
+	$("#learn").hide();
+	$("#question").hide();
+	$("#about").hide();
+	enterDisclaimer();
+	resetValueTest();
+}
+function enterLearn(){
+	$("#home").hide();
+	$("#test").hide();
+	$("#learn").show();
+	$("#question").hide();
+	$("#about").hide();
+}
+
+function enterQuestion(){
+	$("#home").hide();
+	$("#test").hide();
+	$("#learn").hide();
+	$("#question").show();
+	$("#about").hide();
+	resetValueQuestion();
+}
+
+function resetValueQuestion(){
+	questionMessageVal = "";
+	questionEmailVal = "";
+	$("#questionMessage").val("");
+	$("#questionEmail").val("");
+	$('#sendQuestionButton').button('disable');
+}
+
+function sendQuestion(){
+	questionMessageVal = $("#questionMessage").val();
+	questionEmailVal = $("#questionEmail").val();
+	sentQuestionFunction();
+	enterHome();
+}
+function sentQuestion(){
+	backlogQuestion = "inProcess";
+	var data = "message="+questionMessageVal+"&email="+questionEmailVal;
+    $.ajax({
+		type: "POST",
+	 	url: "http://sd.preecha.in.th/submitQuestion.php",
+		data: data,
+	 	success: function(data) {
+			if(data == "success"){	
+				//location.reload();
+				alert("SUSSESS!!");
+				console.log("success");
+				backlogQuestion = "no";
+			}
+			else if (data == "fail"){
+				alert("Fail!!");
+				console.log("fail");
+				backlogQuestion = "yes";
+			}
+			else {
+				alert("return ERROR!!!"+ data);
+				console.log("error");
+				backlogQuestion = "yes";
+			}
+		},
+		error: function(){
+			alert("ajax ERROR!!! Please try again.");	
+			console.log("ajax ERROR!!! Please try again.");
+			backlogQuestion = "yes";
+		}
+	});
+}
+
+function sentQuestionFunction(){
+	console.log("sent data...");
+	sentQuestion();
+}
+
+$("textarea[id='questionMessage']" ).change(function() {
+	if($("#questionMessage").val() != "" && $("#questionEmail").val() != ""){
+		$('#sendQuestionButton').button('enable');
+	}
+	else{
+		$('#sendQuestionButton').button('disable');
+	}
+});
+$("input[id='questionEmail']" ).change(function() {
+	if($("#questionMessage").val() != "" && $("#questionEmail").val() != ""){
+		$('#sendQuestionButton').button('enable');
+	}
+	else{
+		$('#sendQuestionButton').button('disable');
+	}
+});
+
+
+function enterAbout(){
+	$("#home").hide();
+	$("#test").hide();
+	$("#learn").hide();
+	$("#question").hide();
+	$("#about").show();
+}
+
+function enterDisclaimer(){
+	$("#disclaimer").show();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+}
+
+function checkButtonDisclaimer(d) {
+	if (d.checked == true)
+	{
+		$('#acceptButton').button('enable');
+	} else {
+		$('#acceptButton').button('disable');
+	}
+}
+
+
+function enterBirthDate(){
+	$("#disclaimer").hide();
+	$("#birthDate").show();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+}
+
+$( "input[type='date']" ).change(function() {
+		//birth date check
+		if ($('#birthDateBox').val() != "") {
+			$('#nextbirthDate').button('enable');
+			birthDate = $('#birthDateBox').val();
+		} else {
+			$('#nextbirthDate').button('disable');
+		}
+});
+
+function enterStep1() {
+	//clearInterval(CheckDate);
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").show();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+}
+
+function step1SelectNo() {
+	step1 = "no";
+	$('#nextStep1').button('enable');
+	$('#nextStep1').attr('onclick','enterStep5()');
+}
+
+function step1SelectYes() {
+	step1 = "yes";
+	$('#nextStep1').button('enable');
+	$('#nextStep1').attr('onclick','enterStep2()');
+}
+
+function enterStep2() {
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").show();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+}
+
+function checkSpeechWordValue(){
+	if ($('#speechWord').val() != "" && $('#speechWord').val() >0 && $('#speechWord').val() <=100) {
+		if($('#speechWord').val()<5){
+			$('#nextStep2').attr('onclick','enterStep5()');
+		}
+		else{
+			$('#nextStep2').attr('onclick','enterStep3()');
+		}
+		step2 = $('#speechWord').val() ;
+		$('#nextStep2').button('enable');
+	} else {
+		$('#nextStep2').button('disable');
+	}
+}
+/*
+$( "input[type='range']" ).change(function() {
+		if ($('#speechWord').val() != "" ) {
+			$('#nextStep2').button('enable');
+		} else {
+			$('#nextStep2').button('disable');
+		}
+});
+*/
+
+function enterStep3() {
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").show();
+	$("#step4").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+}
+
+function step3SelectNo() {
+	step3 = "no";
+	$('#nextStep3').button('enable');
+	$('#nextStep3').attr('onclick','enterStep4()');
+}
+
+function step3SelectYes() {
+	step3 = "yes";
+	$('#nextStep3').button('enable');
+	$('#nextStep3').attr('onclick','enterStep5()');
+}
+
+function enterStep4() {
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").show();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+}
+
+function checkSpeechWordStep4Value(){
+	if ($('#speechWordStep4').val() != "" && $('#speechWordStep4').val() >=0 && $('#speechWordStep4').val() <=100) {
+		if($('#speechWordStep4').val()<3){
+			$('#nextStep4').attr('onclick','enterStep5()');
+		}
+		else{
+			$('#nextStep4').attr('onclick','enterResult1()');
+		}
+		step4 = $('#speechWordStep4').val();
+		$('#nextStep4').button('enable');
+	} else {
+		$('#nextStep4').button('disable');
+	}
+}
+
+
+function enterStep5() {
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#step5").show();
+	showStep5_1();
+	$("#step6").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+}
+
+function showStep5_1(){
+	$("#step5_1").show();
+	$("#step5_2").hide();
+	$("#step5_3").hide();
+	$("#step5_4").hide();
+}
+function showStep5_2(){
+	$("#step5_1").hide();
+	$("#step5_2").show();
+	$("#step5_3").hide();
+	$("#step5_4").hide();
+
+	deselectStep5_2Picture()
+}
+function showStep5_3(){
+	$("#step5_1").hide();
+	$("#step5_2").hide();
+	$("#step5_3").show();
+	$("#step5_4").hide();
+	$("#step5_3_selection").hide();
+}
+function showStep5_4(){
+	$("#step5_1").hide();
+	$("#step5_2").hide();
+	$("#step5_3").hide();
+	$("#step5_4").show();
+}
+
+function step5_1SelectNo() {
+	step5_1 = "no";
+	$('#nextStep5_1').button('enable');
+	$('#step5_2Topic').text('2.1 ชี้ภาพบ้าน');
+}
+
+function step5_1SelectYes() {
+	step5_1 = "yes";
+	$('#nextStep5_1').button('enable');
+	$('#step5_2Topic').text('2.1 ชี้ภาพบ้าน');
+}
+
+function deselectStep5_2Picture(){
+	$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
+	$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
+	$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
+	$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+
+	pictureHomeSelectStatus = "deselect";
+	pictureDogSelectStatus = "deselect";
+	pictureWaterglassSelectStatus = "deselect";
+	pictureBallSelectStatus = "deselect";
+}
+
+function checkStep5_2_Ans(){
+	if($('#nextStep5_2').attr('onclick')=="nextStep5_2_1()"){
+		if(pictureHomeSelectStatus == "selected"){
+			step5_2_1_pictureAns = "correct";
+			step5_2_1_select = "home";
+		}
+		else if(pictureDogSelectStatus == "selected"){
+			step5_2_1_pictureAns = "wrong";
+			step5_2_1_select = "dog";
+		}
+		else if(pictureWaterglassSelectStatus == "selected"){
+			step5_2_1_pictureAns = "wrong";
+			step5_2_1_select = "waterglass";
+		}
+		else if(pictureBallSelectStatus == "selected"){
+			step5_2_1_pictureAns = "wrong";
+			step5_2_1_select = "ball";
+		}
+	}
+	else if($('#nextStep5_2').attr('onclick')=="nextStep5_2_2()"){
+		if(pictureHomeSelectStatus == "selected"){
+			step5_2_2_pictureAns = "wrong";
+			step5_2_2_select = "home";
+		}
+		else if(pictureDogSelectStatus == "selected"){
+			step5_2_2_pictureAns = "correct";
+			step5_2_2_select = "dog";
+		}
+		else if(pictureWaterglassSelectStatus == "selected"){
+			step5_2_2_pictureAns = "wrong";
+			step5_2_2_select = "waterglass";
+		}
+		else if(pictureBallSelectStatus == "selected"){
+			step5_2_2_pictureAns = "wrong";
+			step5_2_2_select = "ball";
+		}
+	}
+	else if($('#nextStep5_2').attr('onclick')=="nextStep5_2_3()"){
+		if(pictureHomeSelectStatus == "selected"){
+			step5_2_3_pictureAns = "wrong";
+			step5_2_3_select = "home";
+		}
+		else if(pictureDogSelectStatus == "selected"){
+			step5_2_3_pictureAns = "wrong";
+			step5_2_3_select = "dog";
+		}
+		else if(pictureWaterglassSelectStatus == "selected"){
+			step5_2_3_pictureAns = "correct";
+			step5_2_3_select = "waterglass";
+		}
+		else if(pictureBallSelectStatus == "selected"){
+			step5_2_3_pictureAns = "wrong";
+			step5_2_3_select = "ball";
+		}	
+	}
+	else if($('#nextStep5_2').attr('onclick')=="nextStep5_2_4()"){
+		if(pictureHomeSelectStatus == "selected"){
+			step5_2_4_pictureAns = "wrong";
+			step5_2_4_select = "home";
+		}
+		else if(pictureDogSelectStatus == "selected"){
+			step5_2_4_pictureAns = "wrong";
+			step5_2_4_select = "dog";
+		}
+		else if(pictureWaterglassSelectStatus == "selected"){
+			step5_2_4_pictureAns = "wrong";
+			step5_2_4_select = "waterglass";
+		}
+		else if(pictureBallSelectStatus == "selected"){
+			step5_2_4_pictureAns = "correct";
+			step5_2_4_select = "ball";
+		}
+	}
+}
+
+function pictureHomeSelect() {
+	//console.log($('#nextStep5_2').attr('onclick'));
+	if(pictureHomeSelectStatus == "selected"){
+		pictureHomeSelectStatus = "deselect";
+		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
+		
+		$('#nextStep5_2').button('disable');
+	}
+	else{
+		$('#pictureHome').attr('style','border:5px solid red;width:150px; height:150px;');
+		$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+
+		pictureHomeSelectStatus = "selected";
+		pictureDogSelectStatus = "deselect";
+		pictureWaterglassSelectStatus = "deselect";
+		pictureBallSelectStatus = "deselect";
+		
+		$('#nextStep5_2').button('enable');
+		checkStep5_2_Ans();
+	}	
+}
+
+function pictureDogSelect() {
+	if(pictureDogSelectStatus == "selected"){
+		pictureDogSelectStatus = "deselect";
+		$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
+		
+		$('#nextStep5_2').button('disable');
+	}
+	else{
+		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureDog').attr('style','border:5px solid red;width:150px; height:150px;');
+		$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+		
+		pictureHomeSelectStatus = "deselect";
+		pictureDogSelectStatus = "selected";
+		pictureWaterglassSelectStatus = "deselect";
+		pictureBallSelectStatus = "deselect";
+		
+		$('#nextStep5_2').button('enable');
+		checkStep5_2_Ans();
+	}	
+}
+
+function pictureWaterglassSelect() {
+	if(pictureWaterglassSelectStatus == "selected"){
+		pictureWaterglassSelectStatus = "deselect";
+		$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
+		
+		$('#nextStep5_2').button('disable');
+	}
+	else{
+		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureWaterglass').attr('style','border:5px solid red;width:150px; height:150px;');
+		$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+
+		pictureHomeSelectStatus = "deselect";
+		pictureDogSelectStatus = "deselect";
+		pictureWaterglassSelectStatus = "selected";
+		pictureBallSelectStatus = "deselect";
+		
+		$('#nextStep5_2').button('enable');
+		checkStep5_2_Ans();
+	}	
+}
+
+function pictureBallSelect() {
+	if(pictureBallSelectStatus == "selected"){
+		pictureBallSelectStatus = "deselect";
+		$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+		
+		$('#nextStep5_2').button('disable');
+	}
+	else{
+		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureBall').attr('style','border:5px solid red;width:150px; height:150px;');
+
+		pictureHomeSelectStatus = "deselect";
+		pictureDogSelectStatus = "deselect";
+		pictureWaterglassSelectStatus = "deselect";
+		pictureBallSelectStatus = "selected";
+		
+		$('#nextStep5_2').button('enable');
+		checkStep5_2_Ans();
+	}	
+}
+
+
+function cantStep5_2_1(){
+	step5_2_1_pictureAns = "cant";
+	step5_2_1_select = "-";
+	
+	$('#step5_2Topic').text('2.2 ชี้ภาพหมา');
+	deselectStep5_2Picture();
+	$('#nextStep5_2').button('disable');
+	$('#cantStep5_2').attr('onclick','cantStep5_2_2()');
+	$('#nextStep5_2').attr('onclick','nextStep5_2_2()');
+}
+function cantStep5_2_2(){
+	step5_2_2_pictureAns = "cant";
+	step5_2_2_select = "-";
+	
+	$('#step5_2Topic').text('2.3 ชี้ภาพแก้ว');
+	deselectStep5_2Picture();
+	$('#nextStep5_2').button('disable');
+	$('#cantStep5_2').attr('onclick','cantStep5_2_3()');
+	$('#nextStep5_2').attr('onclick','nextStep5_2_3()');
+}
+function cantStep5_2_3(){
+	step5_2_3_pictureAns = "cant";
+	step5_2_3_select = "-";
+	
+	$('#step5_2Topic').text('2.4 ชี้ภาพบอล');
+	deselectStep5_2Picture();
+	$('#nextStep5_2').button('disable');
+	$('#cantStep5_2').attr('onclick','cantStep5_2_4()');
+	$('#nextStep5_2').attr('onclick','nextStep5_2_4()');
+}
+function cantStep5_2_4(){
+	step5_2_4_pictureAns = "cant";
+	step5_2_4_select = "-";
+	
+	deselectStep5_2Picture();
+	$('#nextStep5_2').button('disable');
+	showStep5_3();
+}
+
+function nextStep5_2_1(){
+	$('#step5_2Topic').text('2.2 ชี้ภาพหมา');
+	deselectStep5_2Picture();
+	$('#nextStep5_2').button('disable');
+	$('#cantStep5_2').attr('onclick','cantStep5_2_2()');
+	$('#nextStep5_2').attr('onclick','nextStep5_2_2()');
+}
+function nextStep5_2_2(){
+	$('#step5_2Topic').text('2.3 ชี้ภาพแก้ว');
+	deselectStep5_2Picture();
+	$('#nextStep5_2').button('disable');
+	$('#cantStep5_2').attr('onclick','cantStep5_2_3()');
+	$('#nextStep5_2').attr('onclick','nextStep5_2_3()');
+}
+function nextStep5_2_3(){
+	$('#step5_2Topic').text('2.4 ชี้ภาพบอล');
+	deselectStep5_2Picture();
+	$('#nextStep5_2').button('disable');
+	$('#cantStep5_2').attr('onclick','cantStep5_2_4()');
+	$('#nextStep5_2').attr('onclick','nextStep5_2_4()');
+}
+function nextStep5_2_4(){
+	deselectStep5_2Picture();
+	$('#nextStep5_2').button('disable');
+	showStep5_3();
+}
+
+function step5_3SelectNo() {
+	step5_3 = "no";
+	$('#nextStep5_3').button('enable');
+	step5_3_yes = "-";
+	$("#step5_3_selection").hide();
+}
+
+function step5_3SelectYes() {
+	step5_3 = "yes";
+	//$('#nextStep5_3').button('enable');
+	$("#step5_3_selection").show();
+	checkStep5_3_yes_value();
+}
+
+function checkStep5_3_yes_value(){
+	if ($('#step5_3_yes_value').val() != "" && $('#step5_3_yes_value').val() != 0) {
+		step5_3_yes = $('#step5_3_yes_value').val();
+		$('#nextStep5_3').button('enable');
+	} else {
+		$('#nextStep5_3').button('disable');
+	}
+}
+
+function step5_4SelectNo() {
+	step5_4 = "no";
+	$('#nextStep5_4').button('enable');
+}
+
+function step5_4SelectYes() {
+	step5_4 = "yes";
+	$('#nextStep5_4').button('enable');
+}
+
+function calStep5(){
+	step5Point = 0;
+	step5_2Point = 0;
+
+	if(step5_2_1_pictureAns == "correct"){
+		step5_2Point++;
+	}
+	if(step5_2_2_pictureAns == "correct"){
+		step5_2Point++;
+	}
+	if(step5_2_3_pictureAns == "correct"){
+		step5_2Point++;
+	}
+	if(step5_2_4_pictureAns == "correct"){
+		step5_2Point++;
+	}
+
+	if(step5_1 == 'yes'){
+		step5Point++;
+	}
+	if(step5_2Point > 0){
+		step5Point++;
+	}
+	if(step5_3 == 'yes'){
+		step5Point++;
+	}
+	if(step5_4 == 'yes'){
+		step5Point++;
+	}
+	
+	if(step5Point == 4){
+		enterResult2();
+	}
+	else if(step5Point == 3){
+		enterResult3();
+	}
+	else{
+		enterStep6();
+	}
+}
+
+function enterStep6(){
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#step5").hide();
+	$("#step6").show();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+	step6=0;
+}
+
+function step6SelectNo() {
+	//step6 = "no";
+	$('#nextStep6').button('enable');
+
+	if($('#nextStep6').attr('onclick')=="nextStep6_1()"){
+		step6_1 = "no";
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_2()"){
+		step6_2 = "no";
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_3()"){
+		step6_3 = "no";
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_4()"){
+		step6_4 = "no";
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_5()"){
+		step6_5 = "no";
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_6()"){
+		step6_6 = "no";
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_7()"){
+		step6_7 = "no";
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_8()"){
+		step6_8 = "no";
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_9()"){
+		step6_9 = "no";
+	}
+	else if($('#nextStep6').attr('onclick')=="calStep6()"){
+		step6_10 = "no";
+	}
+}
+
+function step6SelectYes() {
+	//step6 = "yes";
+	$('#nextStep6').button('enable');
+
+	if($('#nextStep6').attr('onclick')=="nextStep6_1()"){
+		step6_1 = "yes";
+		step6++;
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_2()"){
+		step6_2 = "yes";
+		step6++;
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_3()"){
+		step6_3 = "yes";
+		step6++;
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_4()"){
+		step6_4 = "yes";
+		step6++;
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_5()"){
+		step6_5 = "yes";
+		step6++;
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_6()"){
+		step6_6 = "yes";
+		step6++;
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_7()"){
+		step6_7 = "yes";
+		step6++;
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_8()"){
+		step6_8 = "yes";
+		step6++;
+	}
+	else if($('#nextStep6').attr('onclick')=="nextStep6_9()"){
+		step6_9 = "yes";
+		step6++;
+	}
+	else if($('#nextStep6').attr('onclick')=="calStep6()"){
+		step6_10 = "yes";
+		step6++;
+	}
+}
+
+function deselectStep6(){
+	$('#step6_no').prop('checked', false).checkboxradio( "refresh" );
+	$('#step6_yes').prop('checked', false).checkboxradio( "refresh" );
+}
+
+function nextStep6_1(){
+	$('#step6Choice').text('2. ในครอบครัวมีสมาชิกฝ่ายใดฝ่ายหนึ่งที่มีการได้ยินผิดปกติแบบถาวร');
+	deselectStep6();
+	$('#nextStep6').button('disable');
+	$('#nextStep6').attr('onclick','nextStep6_2()');
+}
+
+function nextStep6_2(){
+	$('#step6Choice').text('3. เคยอยู่ในหอผู้ป่วยวิกฤตในช่วงแรกเกิดนานมากกว่า 5 วัน หรือมีประวัติว่าเคยได้รับการรักษาอย่างใดอย่างหนึ่งดังต่อไปนี้ คือ ใช้เครื่องช่วยหายใจ ได้รับยาที่มีผลข้างเคียงเป็นพิษต่อระบบประสาทการได้ยิน และภาวะตัวเหลืองจนต้องเปลี่ยนถ่ายเลือด');
+	deselectStep6();
+	$('#nextStep6').button('disable');
+	$('#nextStep6').attr('onclick','nextStep6_3()');
+}
+
+function nextStep6_3(){
+	$('#step6Choice').text('4. มีการติดเชื้อช่วงก่อนคลอด เช่น หัดเยอรมัน ซิฟิลิส เริม CMV toxoplasmosis เป็นต้น');
+	deselectStep6();
+	$('#nextStep6').button('disable');
+	$('#nextStep6').attr('onclick','nextStep6_4()');
+}
+
+function nextStep6_4(){
+	$('#step6Choice').text('5. ความผิดปกติแต่กำเนิดของศีรษะและใบหน้า ส่วนใบหู รูหู มีติ่งเนื้อหรือรูบริเวณหน้าหู');
+	deselectStep6();
+	$('#nextStep6').button('disable');
+	$('#nextStep6').attr('onclick','nextStep6_5()');
+}
+
+function nextStep6_5(){
+	$('#step6Choice').text('6. มีปอยผมขาวด้านหน้า (white forelock) ซึ่งเป็นอาการแสดงหนึ่งของโรค Warrdenburg Syndrome');
+	deselectStep6();
+	$('#nextStep6').button('disable');
+	$('#nextStep6').attr('onclick','nextStep6_6()');
+}
+
+function nextStep6_6(){
+	$('#step6Choice').text('7. เคยมีการติดเชื้อเยื่อหุ้มสมองอักเสบ');
+	deselectStep6();
+	$('#nextStep6').button('disable');
+	$('#nextStep6').attr('onclick','nextStep6_7()');
+}
+
+function nextStep6_7(){
+	$('#step6Choice').text('8. มีโรคประจำตัวที่เป็นความผิดปกติเกี่ยวกับสมองหรือระบบประสาท');
+	deselectStep6();
+	$('#nextStep6').button('disable');
+	$('#nextStep6').attr('onclick','nextStep6_8()');
+}
+
+function nextStep6_8(){
+	$('#step6Choice').text('9. เคยได้รับการบาดเจ็บที่ศีรษะ โดยเฉพาะมีกระดูกแตกหักบริเวณฐานกะโหลก ซึ่งรุนแรงจนต้องพักรักษาตัวในโรงพยาบาล');
+	deselectStep6();
+	$('#nextStep6').button('disable');
+	$('#nextStep6').attr('onclick','nextStep6_9()');
+}
+
+function nextStep6_9(){
+	$('#step6Choice').text('10. เคยได้รับยาเคมีบำบัด');
+	deselectStep6();
+	$('#nextStep6').button('disable');
+	$('#nextStep6').attr('onclick','calStep6()');
+}
+
+function calStep6(){
+	if(step6 > 0){
+		enterResult5();
+	}
+	else{
+		enterResult4();
+	}
+}
+
+
+
+function enterResult1() {
+	result = "result1";
+	$('#backLanguageDevelopment').attr('onclick','enterResult1()');
+
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#step5").hide();
+	$("#step6").hide();
+	$("#result1").show();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+
+	backlog = "yes";
+}
+
+function enterResult2() {
+	result = "result2";
+	$('#backLanguageDevelopment').attr('onclick','enterResult2()');
+
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#step5").hide();
+	$("#step6").hide();
+	$("#result1").hide();
+	$("#result2").show();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+
+	backlog = "yes";
+}
+
+function enterResult3() {
+	result = "result3";
+	$('#backLanguageDevelopment').attr('onclick','enterResult3()');
+
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#step5").hide();
+	$("#step6").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").show();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+
+	backlog = "yes";
+}
+
+function enterResult4() {
+	result = "result4";
+	$('#backLanguageDevelopment').attr('onclick','enterResult4()');
+
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#step5").hide();
+	$("#step6").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").show();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+
+	backlog = "yes";
+}
+
+function enterResult5() {
+	result = "result5";
+	$('#backLanguageDevelopment').attr('onclick','enterResult5()');
+
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#step5").hide();
+	$("#step6").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").show();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+
+	backlog = "yes";
+}
+
+function enterLanguageDevelopment(){
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#step5").hide();
+	$("#step6").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").show();
+	$("#inspectThoroughly").hide();
+}
+
+
+function enterInspectThoroughly() {
+	$("#disclaimer").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#step5").hide();
+	$("#step6").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").show();
+}
+
+function saveInspectThoroughly(){
+	inspectThoroughlyPhoneVal = $("#inspectThoroughlyPhone").val();
+	sentDataFunction();
+	enterHome();
+}
+
+function backInspectThoroughly(){
+	inspectThoroughlyPhoneVal = "-";
+	sentDataFunction();
+	enterHome();
+}
+
+$("input[id='inspectThoroughlyPhone']" ).change(function() {
+	if($("#inspectThoroughlyPhone").val() != ""){
+		$('#saveInspectThoroughlyButton').button('enable');
+	}
+	else{
+		$('#saveInspectThoroughlyButton').button('disable');
+	}
+});
+
+</script>
+
+</body>
+</html>
