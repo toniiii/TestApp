@@ -42,15 +42,15 @@ var backlogQuestion = "no";
 	</textarea>
 	<label><input type="checkbox" name="disclaimer" onclick="checkButtonDisclaimer(this);">ฉันยินยอมข้อตกลงข้างต้น</label>
    <div style="text-align:center;">
-		<input type="button" value="Accept" data-inline="true" id="acceptButton" disabled onclick=enterBirthDate()  data-theme="b">
-		<input type="button" value="Cancel" data-inline="true">
+		<a href="" data-role="button" data-inline="true" id="acceptButton"  class="ui-disabled" onclick=enterBirthDate()  data-theme="b">Accept</a>
+		<a href="" data-role="button" data-inline="true">Cancel</a>
 	</div>
 	</div>
 
 	<div id="birthDate" style="text-align:center;">
 		<h3>กรุณากรอกวันเกิดของเด็ก</h3>
 		<input type="date" data-clear-btn="true" name="birthDateBox" id="birthDateBox" value="">
-		<input type="button" value="Next" data-theme="b" id="nextbirthDate" disabled onclick="enterStep1()">
+		<a href="" data-role="button" data-theme="b" id="nextbirthDate" class="ui-disabled" onclick="enterStep1()">Next</a>
 	</div>
 	
 	<div id="step1" style="text-align:center;">
@@ -61,7 +61,7 @@ var backlogQuestion = "no";
 			<input type="radio" name="step1" id="step1_yes" onclick="step1SelectYes()">
 			<label for="step1_yes">ใช่</label>
 		</fieldset>
-		<input type="button" value="Next" data-theme="b" id="nextStep1" disabled onclick="">
+		<a href="" data-role="button" data-theme="b" id="nextStep1" class="ui-disabled" onclick="">Next</a>
 	</div>
 	
 	<div id="step2" style="text-align:center;">
@@ -70,7 +70,7 @@ var backlogQuestion = "no";
 			<input type="range" name="speechWord" id="speechWord" value="" min="0" max="100" onchange="checkSpeechWordValue()">
 			<label><b><font size="5">คำ</font></b></label>
 		</div>
-		<input type="button" value="Next" data-theme="b" id="nextStep2" disabled onclick="">
+		<a href="" data-role="button" data-theme="b" id="nextStep2" class="ui-disabled" onclick="">Next</a>
 	</div>
 
 	<div id="step3" style="text-align:center;">
@@ -81,7 +81,7 @@ var backlogQuestion = "no";
 			<input type="radio" name="step3" id="step3_yes" onclick="step3SelectYes()">
 			<label for="step3_yes">ใช่</label>
 		</fieldset>
-		<input type="button" value="Next" data-theme="b" id="nextStep3" disabled onclick="">
+		<a href="" data-role="button" data-theme="b" id="nextStep3" class="ui-disabled" onclick="">Next</a>
 	</div>
 
 	<div id="step4" style="text-align:center;">
@@ -90,63 +90,69 @@ var backlogQuestion = "no";
 			<input type="range" name="speechWordStep4" id="speechWordStep4" value="" min="0" max="100" onchange="checkSpeechWordStep4Value()">
 			<label><b><font size="5">คำ</font></b></label>
 		</div>
-		<input type="button" value="Next" data-theme="b" id="nextStep4" disabled onclick="">
+		<a href="" data-role="button" data-theme="b" id="nextStep4" class="ui-disabled" onclick="">Next</a>
 	</div>
 
 	<div id="step5">
-		<h3>ต่อไปนี้เป็นการประเมินความเข้าใจภาษาของเด็ก </h3>
-		<div id="step5_1">
-			<h4>1. เด็กมักตอบสนองโดยหันหาคนเรียก เมื่อถูกเรียกชื่อ (ควรเป็นการสังเกตในชีวิตประจำวัน ไม่ใช่ตั้งใจเรียกเพื่อทดสอบ)</h4>
-			<fieldset data-role="controlgroup">
-				<input type="radio" name="step5_1" id="step5_1_no" onclick="step5_1SelectNo()">
-				<label for="step5_1_no">ไม่ใช่ คือ มักไม่หันหาเสียงเรียกชื่อ</label>
-				<input type="radio" name="step5_1" id="step5_1_yes" onclick="step5_1SelectYes()">
-				<label for="step5_1_yes">ใช่ คือ มักหันหาเสียงเรียกชื่อ</label>
-			</fieldset>
-			<input type="button" value="Next" data-theme="b" id="nextStep5_1" disabled onclick="showStep5_2()">
-		</div>
-
-		<div id="step5_2">
-			<h4>2. บอกให้เด็กชี้ภาพดังต่อไปนี้</h4>
-			<label id="step5_2Topic"></label><br>
-			<img id="pictureHome" src="picture/home.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureHomeSelect()">
-			<img id="pictureDog" src="picture/dog.png" style="border:5px solid white; width:150px; height:150px;" onclick="pictureDogSelect()">
-			<img id="pictureWaterglass" src="picture/waterglass.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureWaterglassSelect()">
-			<img id="pictureBall" src="picture/ball.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureBallSelect()">
-			
-			<input type="button" value="เด็กไม่สามารถทำได้" id="cantStep5_2" onclick="cantStep5_2_1()">
-			<input type="button" value="Next" data-theme="b" id="nextStep5_2" disabled onclick="nextStep5_2_1()">
-		</div>
-
-		<div id="step5_3">
-			<h4>3. เด็กสามารถชี้อวัยวะต่างๆ เช่น ผม จมูก ตา หู ปาก มือ เท้า ท้อง เป็นต้น ตามที่ท่านบอกได้อย่างถูกต้องแม่นยำอย่างน้อย 1 ส่วน</h4>
-			<fieldset data-role="controlgroup">
-				<input type="radio" name="step5_3" id="step5_3_no" onclick="step5_3SelectNo()">
-				<label for="step5_3_no">ยังชี้อวัยวะตามคำบอกไม่ได้เลย</label>
-				<input type="radio" name="step5_3" id="step5_3_yes" onclick="step5_3SelectYes()">
-				<label for="step5_3_yes">ชี้อวัยวะได้อย่างถูกต้อง</label>
-			</fieldset>
-			<div id="step5_3_selection" data-role="fieldcontain">					
-				<label><b><font size="3">รวมทั้งหมด </font></b></label>
-				<input type="range" name="step5_3_yes_value" id="step5_3_yes_value" value="" min="0" max="32" onchange="checkStep5_3_yes_value()">
-				<label><b><font size="3">ส่วน</font></b></label>
+		<div style="text-align:center;">
+			<h3>ต่อไปนี้เป็นการประเมินความเข้าใจภาษาของเด็ก </h3>
+			<div id="step5_1">
+				<h4>1. เด็กมักตอบสนองโดยหันหาคนเรียก เมื่อถูกเรียกชื่อ (ควรเป็นการสังเกตในชีวิตประจำวัน ไม่ใช่ตั้งใจเรียกเพื่อทดสอบ)</h4>
+				<fieldset data-role="controlgroup">
+					<input type="radio" name="step5_1" id="step5_1_no" onclick="step5_1SelectNo()">
+					<label for="step5_1_no">ไม่ใช่ คือ มักไม่หันหาเสียงเรียกชื่อ</label>
+					<input type="radio" name="step5_1" id="step5_1_yes" onclick="step5_1SelectYes()">
+					<label for="step5_1_yes">ใช่ คือ มักหันหาเสียงเรียกชื่อ</label>
+				</fieldset>
+				<a href="" data-role="button" data-theme="b" id="nextStep5_1" class="ui-disabled" onclick="showStep5_2()">Next</a>
 			</div>
-			<input type="button" value="Next" data-theme="b" id="nextStep5_3" disabled onclick="showStep5_4()">
-		</div>
 
-		<div id="step5_4">
-			<h4>4. เด็กสามารถทำตามคำสั่งง่ายๆโดยไม่มีท่าทางประกอบได้<br> (เช่นสั่งให้ไปหยิบของใช้จากอีกที่หนึ่งมาให้ โดยไม่ต้องชี้หรือทำท่าทางบอกร่วมด้วย)</h4>
-			<fieldset data-role="controlgroup">
-				<input type="radio" name="step5_4" id="step5_4_no" onclick="step5_4SelectNo()">
-				<label for="step5_4_no">ไม่สามารถทำได้</label>
-				<input type="radio" name="step5_4" id="step5_4_yes" onclick="step5_4SelectYes()">
-				<label for="step5_4_yes">สามารถทำได้ </label>
-			</fieldset>
-			<input type="button" value="Next" data-theme="b" id="nextStep5_4" disabled onclick="calStep5()">
+			<div id="step5_2">
+				<div style="text-align:center;">
+					<h4>2. บอกให้เด็กชี้ภาพดังต่อไปนี้</h4>
+					<label id="step5_2Topic"></label><br><br>
+					<img id="pictureHome" src="picture/home.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureHomeSelect()">
+					<img id="pictureDog" src="picture/dog.png" style="border:5px solid white; width:150px; height:150px;" onclick="pictureDogSelect()">
+					<img id="pictureWaterglass" src="picture/waterglass.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureWaterglassSelect()">
+					<img id="pictureBall" src="picture/ball.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureBallSelect()">
+					
+					<div style="text-align:center;">
+						<a href="" data-role="button" id="cantStep5_2" data-inline="true" onclick="cantStep5_2_1()">เด็กไม่สามารถทำได้</a>
+						<a href="" data-role="button" data-theme="b" id="nextStep5_2" data-inline="true" class="ui-disabled" onclick="nextStep5_2_1()">Next</a>
+					</div>
+				</div>
+			</div>
+
+			<div id="step5_3">
+				<h4>3. เด็กสามารถชี้อวัยวะต่างๆ เช่น ผม จมูก ตา หู ปาก มือ เท้า ท้อง เป็นต้น ตามที่ท่านบอกได้อย่างถูกต้องแม่นยำอย่างน้อย 1 ส่วน</h4>
+				<fieldset data-role="controlgroup">
+					<input type="radio" name="step5_3" id="step5_3_no" onclick="step5_3SelectNo()">
+					<label for="step5_3_no">ยังชี้อวัยวะตามคำบอกไม่ได้เลย</label>
+					<input type="radio" name="step5_3" id="step5_3_yes" onclick="step5_3SelectYes()">
+					<label for="step5_3_yes">ชี้อวัยวะได้อย่างถูกต้อง</label>
+				</fieldset>
+				<div id="step5_3_selection" data-role="fieldcontain">					
+					<label><b><font size="3">รวมทั้งหมด </font></b></label>
+					<input type="range" name="step5_3_yes_value" id="step5_3_yes_value" value="" min="0" max="32" onchange="checkStep5_3_yes_value()">
+					<label><b><font size="3">ส่วน</font></b></label>
+				</div>
+				<a href="" data-role="button" data-theme="b" id="nextStep5_3" class="ui-disabled" onclick="showStep5_4()">Next</a>
+			</div>
+
+			<div id="step5_4">
+				<h4>4. เด็กสามารถทำตามคำสั่งง่ายๆโดยไม่มีท่าทางประกอบได้<br> (เช่นสั่งให้ไปหยิบของใช้จากอีกที่หนึ่งมาให้ โดยไม่ต้องชี้หรือทำท่าทางบอกร่วมด้วย)</h4>
+				<fieldset data-role="controlgroup">
+					<input type="radio" name="step5_4" id="step5_4_no" onclick="step5_4SelectNo()">
+					<label for="step5_4_no">ไม่สามารถทำได้</label>
+					<input type="radio" name="step5_4" id="step5_4_yes" onclick="step5_4SelectYes()">
+					<label for="step5_4_yes">สามารถทำได้ </label>
+				</fieldset>
+				<a href="" data-role="button" data-theme="b" id="nextStep5_4" class="ui-disabled" onclick="calStep5()">Next</a>
+			</div>
 		</div>
 	</div>
 
-	<div id="step6">
+	<div id="step6" style="text-align:center;">
 		<h3>เด็กมีทักษะความเข้าใจภาษาที่สงสัยว่าอาจจะล่าช้า กรุณาประเมินว่าเด็กมีปัจจัยดังต่อไปนี้ ที่อาจสัมพันธ์กับการได้ยินบกพร่องหรือไม่ </h3>
 		<label id="step6Choice">1. ท่านในฐานะผู้เลี้ยงดูกังวลเกี่ยวกับการได้ยินของเด็ก</label><br>
 		<fieldset data-role="controlgroup">
@@ -155,59 +161,75 @@ var backlogQuestion = "no";
 			<input type="radio" name="step6" id="step6_yes" onclick="step6SelectYes()">
 			<label for="step6_yes">ใช่</label>
 		</fieldset>
-		<input type="button" value="Next" data-theme="b" id="nextStep6" disabled onclick="nextStep6_1()">
+		<a href="" data-role="button" data-theme="b" id="nextStep6" class="ui-disabled" onclick="nextStep6_1()">Next</a>
 	</div>
 
-	<div id="result1">
+	<div id="result1" style="text-align:center;">
 		<h3>result1</h3>
 		<h3>สรุปว่าเด็กมีพัฒนาการด้านภาษาปกติ </h3>
-		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
-		<input type="button" value="Next" data-theme="b" id="nextResult1" onclick="enterInspectThoroughly()">
+		<div style="text-align:center;">
+			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
+			<a href="" data-role="button" data-inline="true" data-theme="b" id="nextResult1" onclick="enterInspectThoroughly()">Next</a>
+		</div>
 	</div>
 
-	<div id="result2">
+	<div id="result2" style="text-align:center;">
 		<h3>result2</h3>
 		<h3>เด็กมีพัฒนาการด้านความเข้าใจภาษาปกติสมวัย แต่พูดช้ากว่าเด็กวัยเดียวกันเล็กน้อย เด็กกลุ่มนี้มีการพยากรณ์โรคในระยะยาวที่ดี คือเกือบทั้งหมดจะสามารถพูด สื่อสารและเรียนรู้ได้ดีเหมือนเด็กวัยเดียวกันเมื่ออายุมากขึ้น อย่างไรก็ตาม หากไม่แน่ใจควรติดตามสังเกตพัฒนาการเป็นระยะ โดยเฉพาะในช่วงปฐมวัย หรือ 6 ปีแรกของชีวิต</h3>
-		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
-		<input type="button" value="Next" data-theme="b" id="nextResult2" onclick="enterInspectThoroughly()">
+		<div style="text-align:center;">
+			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
+			<a href="" data-role="button" data-inline="true" data-theme="b" id="nextResult2" onclick="enterInspectThoroughly()">Next</a>
+		</div>
 	</div>
 
-	<div id="result3">
+	<div id="result3" style="text-align:center;">
 		<h3>result3</h3>
 		<h3>เด็กยังอาจมีความเข้าใจภาษาปกติ แต่ไม่พร้อมในบางเรื่อง แนะนำให้สอนและประเมินซ้ำในช่วง 2-4 สัปดาห์หลังจากนี้ ซึ่งหากยังไม่แน่ใจว่าเด็กผิดปกติหรือไม่ ควรพิจารณาปรึกษาแพทย์ </h3>
-		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
-		<input type="button" value="Next" data-theme="b" id="nextResult3" onclick="enterInspectThoroughly()">
+		<div style="text-align:center;">
+			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
+			<a href="" data-role="button" data-inline="true" data-theme="b" id="nextResult3" onclick="enterInspectThoroughly()">Next</a>
+		</div>
 	</div>
 
-	<div id="result4">
+	<div id="result4" style="text-align:center;">
 		<h3>result4</h3>
 		<h3>เด็กไม่มีปัจจัยเสี่ยงต่อการได้ยินบกพร่อง ดังนั้นท่านควรส่งเสริมพัฒนาการ โดยเฉพาะทักษะด้านความเข้าใจภาษาเพิ่มเติม หากไม่ดีขึ้นจนมีทักษะความสามารถใกล้เคียงเด็กวัยเดียวกัน ในช่วง 1-2 เดือนข้างหน้า ควรพิจารณาปรึกษาแพทย์ </h3>
-		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
-		<input type="button" value="Next" data-theme="b" id="nextResult4" onclick="enterInspectThoroughly()">
+		<div style="text-align:center;">
+			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
+			<a href="" data-role="button" data-inline="true" data-theme="b" id="nextResult4" onclick="enterInspectThoroughly()">Next</a>
+		</div>
 	</div>
 
 	<div id="result5">
-		<h3>result5</h3>
-		<h3>เด็กมีปัจจัยเสี่ยงที่อาจจะมีการได้ยินบกพร่องบางส่วน ควรพิจารณาปรึกษาแพทย์ เพื่อตรวจการได้ยินต่อไป </h3>
-		<input type="button" value="พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน"  id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">
-		<input type="button" value="Next" data-theme="b" id="nextResult5" onclick="enterInspectThoroughly()">
+		<div style="text-align:center;">
+			<h3>result5</h3>
+			<h3>เด็กมีปัจจัยเสี่ยงที่อาจจะมีการได้ยินบกพร่องบางส่วน ควรพิจารณาปรึกษาแพทย์ เพื่อตรวจการได้ยินต่อไป </h3>
+			<div style="text-align:center;">
+				<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
+				<a href="" data-role="button" data-theme="b" data-inline="true"  id="nextResult5" onclick="enterInspectThoroughly()">Next</a>
+			</div>
+		</div>
 	</div>
 	
 	<div id="languageDevelopment">
-		<h3>พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</h3>
+		<div style="text-align:center;">
+			<h3>พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</h3>
+		</div>
 		<label><br><b>ด้านการพูดและการสื่อสาร</b> – เด็กจะเริ่มพูดคำคุ้นเคย เช่น “พ่อ” “แม่” หรือชื่อคนในครอบครัวได้ที่อายุ 12 – 15 เดือน ต่อมาที่อายุประมาณ 18 เดือน เด็กจะเริ่มพูดคำศัพท์อื่นๆที่มีความหมาย โดยเฉพาะคำศัพท์ที่นอกเหนือจากคำซึ่งใช้เรียกคนหรือสัตว์เลี้ยงในบ้านมากขึ้นเรื่อยๆ จนกระทั่งอายุ 24 เดือน จำนวนคำศัพท์ที่พูดได้มีประมาณ 50-200 คำ และจะเริ่มนำคำมารวมกันเพื่อสื่อสารได้ เช่น “ไปเที่ยว” “ไม่เดิน” คำพูดอาจยังไม่ชัดเจนบ้าง แต่ผู้เลี้ยงดูฟังเข้าใจ ในกรณีที่เด็กยังไม่สามารถพูดเป็นคำ ที่อายุประมาณ 12-15 เดือนเป็นต้นไป เด็กมักจะสื่อสารความต้องการด้วยการใช้ภาษาท่าทางให้เห็นได้อย่างชัดเจน ได้แก่ การสบตาหรือใช้สายตาเพื่อสื่อสาร การชี้บอกความต้องการ รวมถึงการแสดงอารมณ์ผ่านสีหน้าท่าทาง<br><br>
 	<b>ด้านความเข้าใจภาษา</b> – เด็กที่อายุ 16-18 เดือน สามารถชี้อวัยวะตามสั่งได้อย่างถูกต้อง 1-3 ส่วน ทำตามคำสั่ง 1 ขั้นตอนที่ไม่มีท่าทางประกอบได้ ตลอดจนชี้รูปภาพตามคำบอกได้อย่างน้อย 1 รูป เมื่ออายุ 24 เดือน เด็กจะสามารถทำตามคำสั่ง 2 ขั้นตอนที่มีความสัมพันธ์กันได้ ชี้สิ่งต่างๆและรูปภาพตามคำบอกได้มากหลากหลาย เริ่มเข้าใจคำคุณศัพท์ที่บอกขนาด ได้แก่ ใหญ่ เล็ก ยาว สั้น และคำที่ใช้แสดงความรู้สึกได้<br><br>
 	<b>คำแนะนำในการเพิ่มทักษะด้านภาษาทั่วไป</b> : ควรพูดคุยเรื่องที่เด็กสนใจในชีวิตประจำวัน พูดสั้นๆด้วยคำพูดที่ฟังชัดเจน พยายามตั้งใจฟังในสิ่งที่เด็กพยายามสื่อสาร ไม่ว่าจะเป็นการส่งเสียงที่ไม่เป็นคำ หรือการใช้ภาษาท่าทาง เว้นจังหวะให้เด็กสื่อสารโต้ตอบบ่อยๆ ทำกิจกรรมที่ส่งเสริมพัฒนาการทางภาษาตามวัย ได้แก่ อ่านหนังสือนิทานให้ฟัง ร้องเพลง ควรหลีกเลี่ยงกิจกรรมที่ไม่ส่งเสริมการมีปฏิสัมพันธ์และการสื่อสาร เช่น การการดูรายการโทรทัศน์ การใช้คอมพิวเตอร์ หรืออุปกรณ์อื่นๆที่มีลักษณะเดียวกัน เป็นต้น<br>
 		</label>
-		<input type="button" value="Back" data-theme="b" id="backLanguageDevelopment" data-inline="true" onclick="">
+		<div style="text-align:center;">
+			<a href="" data-role="button" data-theme="b" data-inline="true" id="backLanguageDevelopment" data-inline="true" onclick="">Back</a>
+		</div>
 	</div>
 
 	<div id="inspectThoroughly">
 		<h3>หากท่านสนใจนำเด็กของท่านมาพบแพทย์เพื่อตรวจพัฒนาการด้านภาษาอย่างละเอียดต่อไป กรุณากรอกเบอร์โทรศัพท์ที่ท่านสะดวกให้ติดต่อกลับเพื่อทำการนัดหมาย (เฉพาะในช่วงมกราคม พ.ศ.2556 – มีนาคม พ.ศ.2557)</h3>
 		<input type="text" data-clear-btn="true" name="inspectThoroughlyPhone" id="inspectThoroughlyPhone" value="" placeholder="เบอร์โทรศัพท์">
 		<div style="text-align:center;">
-			<input type="button" value="OK" data-theme="b" id="saveInspectThoroughlyButton" data-inline="true" disabled onclick=saveInspectThoroughly()>
-			<input type="button" value="กลับสู่หน้าหลัก" data-theme="b" id="backInspectThoroughlyButton" data-inline="true"  onclick="backInspectThoroughly()">
+			<a href="" data-role="button" data-theme="b" id="saveInspectThoroughlyButton" data-inline="true" class="ui-disabled" onclick=saveInspectThoroughly()>OK</a>
+			<a href="" data-role="button" data-theme="b" id="backInspectThoroughlyButton" data-inline="true"  onclick="backInspectThoroughly()">กลับสู่หน้าหลัก</a>
 		</div>
 	</div>
 
@@ -230,8 +252,8 @@ var backlogQuestion = "no";
 	<textarea cols="40" rows="10" name="questionMessage" id="questionMessage" placeholder="Message" data-clear-btn="true"></textarea>
 	<input type="email" data-clear-btn="true" name="questionEmail" id="questionEmail" value="" placeholder="E-mail" >
 	<div style="text-align:center;">
-		<input type="button" value="Send" data-theme="b" id="sendQuestionButton" data-icon="check" data-inline="true" disabled onclick=sendQuestion()>
-		<input type="button" value="Cancel" id="cancelQuestionButton" data-inline="true" onclick=enterHome()>
+		<a href="" data-role="button" data-theme="b" id="sendQuestionButton" data-icon="check" data-inline="true" class="ui-disabled" onclick=sendQuestion()>Send</a>
+		<a href="" data-role="button" id="cancelQuestionButton" data-inline="true" onclick=enterHome()>Cancel</a>
 	</div>
 </div>
 
@@ -528,7 +550,7 @@ function resetValueQuestion(){
 	questionEmailVal = "";
 	$("#questionMessage").val("");
 	$("#questionEmail").val("");
-	$('#sendQuestionButton').button('disable');
+	$('#sendQuestionButton').addClass('ui-disabled');
 }
 
 function sendQuestion(){
@@ -577,18 +599,18 @@ function sentQuestionFunction(){
 
 $("textarea[id='questionMessage']" ).change(function() {
 	if($("#questionMessage").val() != "" && $("#questionEmail").val() != ""){
-		$('#sendQuestionButton').button('enable');
+		$('#sendQuestionButton').removeClass('ui-disabled');
 	}
 	else{
-		$('#sendQuestionButton').button('disable');
+		$('#sendQuestionButton').addClass('ui-disabled');
 	}
 });
 $("input[id='questionEmail']" ).change(function() {
 	if($("#questionMessage").val() != "" && $("#questionEmail").val() != ""){
-		$('#sendQuestionButton').button('enable');
+		$('#sendQuestionButton').removeClass('ui-disabled');
 	}
 	else{
-		$('#sendQuestionButton').button('disable');
+		$('#sendQuestionButton').addClass('ui-disabled');
 	}
 });
 
@@ -620,9 +642,9 @@ function enterDisclaimer(){
 function checkButtonDisclaimer(d) {
 	if (d.checked == true)
 	{
-		$('#acceptButton').button('enable');
+		$('#acceptButton').removeClass('ui-disabled');
 	} else {
-		$('#acceptButton').button('disable');
+		$('#acceptButton').addClass('ui-disabled');
 	}
 }
 
@@ -646,10 +668,10 @@ function enterBirthDate(){
 $( "input[type='date']" ).change(function() {
 		//birth date check
 		if ($('#birthDateBox').val() != "") {
-			$('#nextbirthDate').button('enable');
+			$('#nextbirthDate').removeClass('ui-disabled');
 			birthDate = $('#birthDateBox').val();
 		} else {
-			$('#nextbirthDate').button('disable');
+			$('#nextbirthDate').addClass('ui-disabled');
 		}
 });
 
@@ -672,13 +694,13 @@ function enterStep1() {
 
 function step1SelectNo() {
 	step1 = "no";
-	$('#nextStep1').button('enable');
+	$('#nextStep1').removeClass('ui-disabled');
 	$('#nextStep1').attr('onclick','enterStep5()');
 }
 
 function step1SelectYes() {
 	step1 = "yes";
-	$('#nextStep1').button('enable');
+	$('#nextStep1').removeClass('ui-disabled');
 	$('#nextStep1').attr('onclick','enterStep2()');
 }
 
@@ -707,17 +729,17 @@ function checkSpeechWordValue(){
 			$('#nextStep2').attr('onclick','enterStep3()');
 		}
 		step2 = $('#speechWord').val() ;
-		$('#nextStep2').button('enable');
+		$('#nextStep2').removeClass('ui-disabled');
 	} else {
-		$('#nextStep2').button('disable');
+		$('#nextStep2').addClass('ui-disabled');
 	}
 }
 /*
 $( "input[type='range']" ).change(function() {
 		if ($('#speechWord').val() != "" ) {
-			$('#nextStep2').button('enable');
+			$('#nextStep2').removeClass('ui-disabled');
 		} else {
-			$('#nextStep2').button('disable');
+			$('#nextStep2').addClass('ui-disabled');
 		}
 });
 */
@@ -740,13 +762,13 @@ function enterStep3() {
 
 function step3SelectNo() {
 	step3 = "no";
-	$('#nextStep3').button('enable');
+	$('#nextStep3').removeClass('ui-disabled');
 	$('#nextStep3').attr('onclick','enterStep4()');
 }
 
 function step3SelectYes() {
 	step3 = "yes";
-	$('#nextStep3').button('enable');
+	$('#nextStep3').removeClass('ui-disabled');
 	$('#nextStep3').attr('onclick','enterStep5()');
 }
 
@@ -775,9 +797,9 @@ function checkSpeechWordStep4Value(){
 			$('#nextStep4').attr('onclick','enterResult1()');
 		}
 		step4 = $('#speechWordStep4').val();
-		$('#nextStep4').button('enable');
+		$('#nextStep4').removeClass('ui-disabled');
 	} else {
-		$('#nextStep4').button('disable');
+		$('#nextStep4').addClass('ui-disabled');
 	}
 }
 
@@ -831,13 +853,13 @@ function showStep5_4(){
 
 function step5_1SelectNo() {
 	step5_1 = "no";
-	$('#nextStep5_1').button('enable');
+	$('#nextStep5_1').removeClass('ui-disabled');
 	$('#step5_2Topic').text('2.1 ชี้ภาพบ้าน');
 }
 
 function step5_1SelectYes() {
 	step5_1 = "yes";
-	$('#nextStep5_1').button('enable');
+	$('#nextStep5_1').removeClass('ui-disabled');
 	$('#step5_2Topic').text('2.1 ชี้ภาพบ้าน');
 }
 
@@ -934,7 +956,7 @@ function pictureHomeSelect() {
 		pictureHomeSelectStatus = "deselect";
 		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
 		
-		$('#nextStep5_2').button('disable');
+		$('#nextStep5_2').addClass('ui-disabled');
 	}
 	else{
 		$('#pictureHome').attr('style','border:5px solid red;width:150px; height:150px;');
@@ -947,7 +969,7 @@ function pictureHomeSelect() {
 		pictureWaterglassSelectStatus = "deselect";
 		pictureBallSelectStatus = "deselect";
 		
-		$('#nextStep5_2').button('enable');
+		$('#nextStep5_2').removeClass('ui-disabled');
 		checkStep5_2_Ans();
 	}	
 }
@@ -957,7 +979,7 @@ function pictureDogSelect() {
 		pictureDogSelectStatus = "deselect";
 		$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
 		
-		$('#nextStep5_2').button('disable');
+		$('#nextStep5_2').addClass('ui-disabled');
 	}
 	else{
 		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
@@ -970,7 +992,7 @@ function pictureDogSelect() {
 		pictureWaterglassSelectStatus = "deselect";
 		pictureBallSelectStatus = "deselect";
 		
-		$('#nextStep5_2').button('enable');
+		$('#nextStep5_2').removeClass('ui-disabled');
 		checkStep5_2_Ans();
 	}	
 }
@@ -980,7 +1002,7 @@ function pictureWaterglassSelect() {
 		pictureWaterglassSelectStatus = "deselect";
 		$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
 		
-		$('#nextStep5_2').button('disable');
+		$('#nextStep5_2').addClass('ui-disabled');
 	}
 	else{
 		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
@@ -993,7 +1015,7 @@ function pictureWaterglassSelect() {
 		pictureWaterglassSelectStatus = "selected";
 		pictureBallSelectStatus = "deselect";
 		
-		$('#nextStep5_2').button('enable');
+		$('#nextStep5_2').removeClass('ui-disabled');
 		checkStep5_2_Ans();
 	}	
 }
@@ -1003,7 +1025,7 @@ function pictureBallSelect() {
 		pictureBallSelectStatus = "deselect";
 		$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
 		
-		$('#nextStep5_2').button('disable');
+		$('#nextStep5_2').addClass('ui-disabled');
 	}
 	else{
 		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
@@ -1016,7 +1038,7 @@ function pictureBallSelect() {
 		pictureWaterglassSelectStatus = "deselect";
 		pictureBallSelectStatus = "selected";
 		
-		$('#nextStep5_2').button('enable');
+		$('#nextStep5_2').removeClass('ui-disabled');
 		checkStep5_2_Ans();
 	}	
 }
@@ -1028,7 +1050,7 @@ function cantStep5_2_1(){
 	
 	$('#step5_2Topic').text('2.2 ชี้ภาพหมา');
 	deselectStep5_2Picture();
-	$('#nextStep5_2').button('disable');
+	$('#nextStep5_2').addClass('ui-disabled');
 	$('#cantStep5_2').attr('onclick','cantStep5_2_2()');
 	$('#nextStep5_2').attr('onclick','nextStep5_2_2()');
 }
@@ -1038,7 +1060,7 @@ function cantStep5_2_2(){
 	
 	$('#step5_2Topic').text('2.3 ชี้ภาพแก้ว');
 	deselectStep5_2Picture();
-	$('#nextStep5_2').button('disable');
+	$('#nextStep5_2').addClass('ui-disabled');
 	$('#cantStep5_2').attr('onclick','cantStep5_2_3()');
 	$('#nextStep5_2').attr('onclick','nextStep5_2_3()');
 }
@@ -1048,7 +1070,7 @@ function cantStep5_2_3(){
 	
 	$('#step5_2Topic').text('2.4 ชี้ภาพบอล');
 	deselectStep5_2Picture();
-	$('#nextStep5_2').button('disable');
+	$('#nextStep5_2').addClass('ui-disabled');
 	$('#cantStep5_2').attr('onclick','cantStep5_2_4()');
 	$('#nextStep5_2').attr('onclick','nextStep5_2_4()');
 }
@@ -1057,47 +1079,47 @@ function cantStep5_2_4(){
 	step5_2_4_select = "-";
 	
 	deselectStep5_2Picture();
-	$('#nextStep5_2').button('disable');
+	$('#nextStep5_2').addClass('ui-disabled');
 	showStep5_3();
 }
 
 function nextStep5_2_1(){
 	$('#step5_2Topic').text('2.2 ชี้ภาพหมา');
 	deselectStep5_2Picture();
-	$('#nextStep5_2').button('disable');
+	$('#nextStep5_2').addClass('ui-disabled');
 	$('#cantStep5_2').attr('onclick','cantStep5_2_2()');
 	$('#nextStep5_2').attr('onclick','nextStep5_2_2()');
 }
 function nextStep5_2_2(){
 	$('#step5_2Topic').text('2.3 ชี้ภาพแก้ว');
 	deselectStep5_2Picture();
-	$('#nextStep5_2').button('disable');
+	$('#nextStep5_2').addClass('ui-disabled');
 	$('#cantStep5_2').attr('onclick','cantStep5_2_3()');
 	$('#nextStep5_2').attr('onclick','nextStep5_2_3()');
 }
 function nextStep5_2_3(){
 	$('#step5_2Topic').text('2.4 ชี้ภาพบอล');
 	deselectStep5_2Picture();
-	$('#nextStep5_2').button('disable');
+	$('#nextStep5_2').addClass('ui-disabled');
 	$('#cantStep5_2').attr('onclick','cantStep5_2_4()');
 	$('#nextStep5_2').attr('onclick','nextStep5_2_4()');
 }
 function nextStep5_2_4(){
 	deselectStep5_2Picture();
-	$('#nextStep5_2').button('disable');
+	$('#nextStep5_2').addClass('ui-disabled');
 	showStep5_3();
 }
 
 function step5_3SelectNo() {
 	step5_3 = "no";
-	$('#nextStep5_3').button('enable');
+	$('#nextStep5_3').removeClass('ui-disabled');
 	step5_3_yes = "-";
 	$("#step5_3_selection").hide();
 }
 
 function step5_3SelectYes() {
 	step5_3 = "yes";
-	//$('#nextStep5_3').button('enable');
+	//$('#nextStep5_3').removeClass('ui-disabled');
 	$("#step5_3_selection").show();
 	checkStep5_3_yes_value();
 }
@@ -1105,20 +1127,20 @@ function step5_3SelectYes() {
 function checkStep5_3_yes_value(){
 	if ($('#step5_3_yes_value').val() != "" && $('#step5_3_yes_value').val() != 0) {
 		step5_3_yes = $('#step5_3_yes_value').val();
-		$('#nextStep5_3').button('enable');
+		$('#nextStep5_3').removeClass('ui-disabled');
 	} else {
-		$('#nextStep5_3').button('disable');
+		$('#nextStep5_3').addClass('ui-disabled');
 	}
 }
 
 function step5_4SelectNo() {
 	step5_4 = "no";
-	$('#nextStep5_4').button('enable');
+	$('#nextStep5_4').removeClass('ui-disabled');
 }
 
 function step5_4SelectYes() {
 	step5_4 = "yes";
-	$('#nextStep5_4').button('enable');
+	$('#nextStep5_4').removeClass('ui-disabled');
 }
 
 function calStep5(){
@@ -1183,7 +1205,7 @@ function enterStep6(){
 
 function step6SelectNo() {
 	//step6 = "no";
-	$('#nextStep6').button('enable');
+	$('#nextStep6').removeClass('ui-disabled');
 
 	if($('#nextStep6').attr('onclick')=="nextStep6_1()"){
 		step6_1 = "no";
@@ -1219,7 +1241,7 @@ function step6SelectNo() {
 
 function step6SelectYes() {
 	//step6 = "yes";
-	$('#nextStep6').button('enable');
+	$('#nextStep6').removeClass('ui-disabled');
 
 	if($('#nextStep6').attr('onclick')=="nextStep6_1()"){
 		step6_1 = "yes";
@@ -1271,63 +1293,63 @@ function deselectStep6(){
 function nextStep6_1(){
 	$('#step6Choice').text('2. ในครอบครัวมีสมาชิกฝ่ายใดฝ่ายหนึ่งที่มีการได้ยินผิดปกติแบบถาวร');
 	deselectStep6();
-	$('#nextStep6').button('disable');
+	$('#nextStep6').addClass('ui-disabled');
 	$('#nextStep6').attr('onclick','nextStep6_2()');
 }
 
 function nextStep6_2(){
 	$('#step6Choice').text('3. เคยอยู่ในหอผู้ป่วยวิกฤตในช่วงแรกเกิดนานมากกว่า 5 วัน หรือมีประวัติว่าเคยได้รับการรักษาอย่างใดอย่างหนึ่งดังต่อไปนี้ คือ ใช้เครื่องช่วยหายใจ ได้รับยาที่มีผลข้างเคียงเป็นพิษต่อระบบประสาทการได้ยิน และภาวะตัวเหลืองจนต้องเปลี่ยนถ่ายเลือด');
 	deselectStep6();
-	$('#nextStep6').button('disable');
+	$('#nextStep6').addClass('ui-disabled');
 	$('#nextStep6').attr('onclick','nextStep6_3()');
 }
 
 function nextStep6_3(){
 	$('#step6Choice').text('4. มีการติดเชื้อช่วงก่อนคลอด เช่น หัดเยอรมัน ซิฟิลิส เริม CMV toxoplasmosis เป็นต้น');
 	deselectStep6();
-	$('#nextStep6').button('disable');
+	$('#nextStep6').addClass('ui-disabled');
 	$('#nextStep6').attr('onclick','nextStep6_4()');
 }
 
 function nextStep6_4(){
 	$('#step6Choice').text('5. ความผิดปกติแต่กำเนิดของศีรษะและใบหน้า ส่วนใบหู รูหู มีติ่งเนื้อหรือรูบริเวณหน้าหู');
 	deselectStep6();
-	$('#nextStep6').button('disable');
+	$('#nextStep6').addClass('ui-disabled');
 	$('#nextStep6').attr('onclick','nextStep6_5()');
 }
 
 function nextStep6_5(){
 	$('#step6Choice').text('6. มีปอยผมขาวด้านหน้า (white forelock) ซึ่งเป็นอาการแสดงหนึ่งของโรค Warrdenburg Syndrome');
 	deselectStep6();
-	$('#nextStep6').button('disable');
+	$('#nextStep6').addClass('ui-disabled');
 	$('#nextStep6').attr('onclick','nextStep6_6()');
 }
 
 function nextStep6_6(){
 	$('#step6Choice').text('7. เคยมีการติดเชื้อเยื่อหุ้มสมองอักเสบ');
 	deselectStep6();
-	$('#nextStep6').button('disable');
+	$('#nextStep6').addClass('ui-disabled');
 	$('#nextStep6').attr('onclick','nextStep6_7()');
 }
 
 function nextStep6_7(){
 	$('#step6Choice').text('8. มีโรคประจำตัวที่เป็นความผิดปกติเกี่ยวกับสมองหรือระบบประสาท');
 	deselectStep6();
-	$('#nextStep6').button('disable');
+	$('#nextStep6').addClass('ui-disabled');
 	$('#nextStep6').attr('onclick','nextStep6_8()');
 }
 
 function nextStep6_8(){
 	$('#step6Choice').text('9. เคยได้รับการบาดเจ็บที่ศีรษะ โดยเฉพาะมีกระดูกแตกหักบริเวณฐานกะโหลก ซึ่งรุนแรงจนต้องพักรักษาตัวในโรงพยาบาล');
 	deselectStep6();
-	$('#nextStep6').button('disable');
+	$('#nextStep6').addClass('ui-disabled');
 	$('#nextStep6').attr('onclick','nextStep6_9()');
 }
 
 function nextStep6_9(){
 	$('#step6Choice').text('10. เคยได้รับยาเคมีบำบัด');
 	deselectStep6();
-	$('#nextStep6').button('disable');
+	$('#nextStep6').addClass('ui-disabled');
 	$('#nextStep6').attr('onclick','calStep6()');
 }
 
@@ -1508,10 +1530,10 @@ function backInspectThoroughly(){
 
 $("input[id='inspectThoroughlyPhone']" ).change(function() {
 	if($("#inspectThoroughlyPhone").val() != ""){
-		$('#saveInspectThoroughlyButton').button('enable');
+		$('#saveInspectThoroughlyButton').removeClass('ui-disabled');
 	}
 	else{
-		$('#saveInspectThoroughlyButton').button('disable');
+		$('#saveInspectThoroughlyButton').addClass('ui-disabled');
 	}
 });
 
