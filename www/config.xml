@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="in.th.preecha.speechdelayscreening" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <access origin="http://*.preecha.in.th" />
 	<access origin="http://sd.preecha.in.th" />
 	<access origin="http://sd.preecha.in.th/submitQuestion.php" />
 	<access origin="http://sd.preecha.in.th/submitTestData.php" />
-    <name>HelloWorld</name>
+    <name>Speech Selay Screening</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        speech delay screening description.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
+    <author email="Ton_iiii@hotmail.com" href="http://preecha.in.th">
         PhoneGap Team
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
