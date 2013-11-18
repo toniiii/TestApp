@@ -38,11 +38,13 @@ var backlogQuestion = "no";
 
 	<div class="ui-body ui-body-c ui-corner-all" style="width:95%;">
 	<div id="disclaimer"> 
-		<textarea name="textarea" id="textarea" style="height:150px;" readonly="true">
-				วัตถุประสงค์ของการจัดทำโปรแกรมนี้ คือ เพื่อช่วยให้ผู้เลี้ยงดู ตลอดจนผู้เกี่ยวข้องในการดูแลเด็ก สามารถประเมินพัฒนาการด้านภาษาของเด็กในช่วงอายุประมาณ 18 เดือน และให้การช่วยเหลือเบื้องต้นได้อย่างเหมาะสม โดยที่แนวทางในโปรแกรมนี้ไม่สามารถนำมาใช้เพื่อทดแทนการวินิจฉัยโดยแพทย์ได้ 
-		อนึ่ง คณะผู้จัดทำจะขอทำการเก็บรวบรวมข้อมูล ที่ได้รับจากการใช้โปรแกรมนี้ เพื่อนำไปศึกษาวิจัย วิเคราะห์และนำเสนอผลงานด้านวิชาการในภาพรวมทั้งหมดเท่านั้น โดยจะไม่เผยแพร่ต่อสาธารณะเป็นรายบุคคล และจะนำผลการวิเคราะห์ดังกล่าวไปปรับปรุงโปรแกรมเพื่อให้เกิดประสิทธิภาพดียิ่งขึ้นในโอกาสต่อไป
-		</textarea>
-		<label><input type="checkbox" name="disclaimer" onclick="checkButtonDisclaimer(this);">ฉันยินยอมข้อตกลงข้างต้น</label>
+		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;" align="left">
+		<!--<textarea name="textarea" id="textarea" style="height:150px;" readonly="true">-->
+		<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;วัตถุประสงค์ของการจัดทำโปรแกรมนี้ คือ เพื่อช่วยให้ผู้เลี้ยงดู ตลอดจนผู้เกี่ยวข้องในการดูแลเด็ก สามารถประเมินพัฒนาการด้านภาษาของเด็กในช่วงอายุประมาณ 17-19 เดือนและให้การช่วยเหลือเบื้องต้นได้อย่างเหมาะสม โดยที่แนวทางในโปรแกรมนี้ไม่สามารถนำมาใช้เพื่อทดแทนการวินิจฉัยโดยแพทย์ได้<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;อนึ่ง คณะผู้จัดทำจะขอทำการเก็บรวบรวมข้อมูล ที่ได้รับจากการใช้โปรแกรมนี้ เพื่อนำไปศึกษาวิจัย วิเคราะห์และนำเสนอผลงานด้านวิชาการในภาพรวมทั้งหมดเท่านั้น โดยจะไม่เผยแพร่ต่อสาธารณะเป็นรายบุคคล และจะนำผลการวิเคราะห์ดังกล่าวไปปรับปรุงโปรแกรมเพื่อให้เกิดประสิทธิภาพดียิ่งขึ้นในโอกาสต่อไป<br><br><br>
+		</div>
+		<label><input type="checkbox" name="disclaimer" onclick="checkButtonDisclaimer(this);">ข้าพเจ้าเข้าใจข้อความดังกล่าวข้างต้นแล้ว และยินยอมให้เก็บข้อมูลเพื่อนำไปใช้ประโยชน์</label>
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-inline="true" id="acceptButton" data-theme="b"  class="ui-disabled" onclick=enterBirthDate()>Accept</a>
 			<a href="" data-role="button" data-inline="true">Cancel</a>
@@ -59,9 +61,9 @@ var backlogQuestion = "no";
 		<h3>เด็กพูดคำที่มีความหมาย ฟังเข้าใจได้อย่างน้อย 1 คำหรือไม่?</h3>
 		<fieldset data-role="controlgroup">
 			<input type="radio" name="step1" id="step1_no" onclick="step1SelectNo()">
-			<label for="step1_no">ไม่ใช่</label>
+			<label for="step1_no">ยังพูดไม่ได้เลยแม้แต่คำเดียว</label>
 			<input type="radio" name="step1" id="step1_yes" onclick="step1SelectYes()">
-			<label for="step1_yes">ใช่</label>
+			<label for="step1_yes">พูดได้</label>
 		</fieldset>
 		<a href="" data-role="button" data-theme="b" id="nextStep1" class="ui-disabled" onclick="">Next</a>
 	</div>
@@ -76,7 +78,7 @@ var backlogQuestion = "no";
 	</div>
 
 	<div id="step3" style="text-align:center;">
-		<h3>เด็กสามารถพูดได้ เฉพาะคำที่ใช้เรียกคน (หรือชื่อคน) ในครอบครัว (รวมชื่อสัตว์เลี้ยง) เท่านั้น เช่น คำว่า “แม่” “พ่อ” “แพร” (ชื่อของพี่หรือน้อง) “บอล” (ชื่อของสัตว์เลี้ยง) เป็นต้น </h3>
+		<h3>เด็กสามารถพูดได้ เฉพาะคำที่ใช้เรียกคน (หรือชื่อคน) ในครอบครัว (รวมชื่อสัตว์เลี้ยง) เท่านั้น เช่น คำว่า “แม่” “พ่อ” “แพร” (ชื่อของพี่หรือน้อง) “โต” (ชื่อของสัตว์เลี้ยง) เป็นต้น </h3>
 		<fieldset data-role="controlgroup">
 			<input type="radio" name="step3" id="step3_no" onclick="step3SelectNo()">
 			<label for="step3_no">ไม่ใช่</label>
@@ -113,10 +115,10 @@ var backlogQuestion = "no";
 				<div style="text-align:center;">
 					<h4>2. บอกให้เด็กชี้ภาพดังต่อไปนี้</h4>
 					<label id="step5_2Topic"></label><br><br>
-					<img id="pictureHome" src="picture/home.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureHomeSelect()">
+					<img id="pictureHome" src="picture/home.png" style="border:5px solid white; width:150px; height:150px;" onclick="pictureHomeSelect()">
 					<img id="pictureDog" src="picture/dog.png" style="border:5px solid white; width:150px; height:150px;" onclick="pictureDogSelect()">
-					<img id="pictureWaterglass" src="picture/waterglass.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureWaterglassSelect()">
-					<img id="pictureBall" src="picture/ball.jpg" style="border:5px solid white; width:150px; height:150px;" onclick="pictureBallSelect()">
+					<img id="pictureWaterglass" src="picture/waterglass.png" style="border:5px solid white; width:150px; height:150px;" onclick="pictureWaterglassSelect()">
+					<img id="pictureShoe" src="picture/shoe.png" style="border:5px solid white; width:150px; height:150px;" onclick="pictureShoeSelect()">
 					
 					<div style="text-align:center;">
 						<a href="" data-role="button" id="cantStep5_2" data-inline="true" onclick="cantStep5_2_1()">เด็กไม่สามารถทำได้</a>
@@ -126,7 +128,7 @@ var backlogQuestion = "no";
 			</div>
 
 			<div id="step5_3">
-				<h4>3. เด็กสามารถชี้อวัยวะต่างๆ เช่น ผม จมูก ตา หู ปาก มือ เท้า ท้อง เป็นต้น ตามที่ท่านบอกได้อย่างถูกต้องแม่นยำอย่างน้อย 1 ส่วน</h4>
+				<h4>3. เด็กสามารถชี้อวัยวะต่างๆ ได้แก่ ผม จมูก ตา หู ปาก มือ เท้า ตามที่ท่านบอกได้อย่างถูกต้องแม่นยำอย่างน้อย 2 ส่วน</h4>
 				<fieldset data-role="controlgroup">
 					<input type="radio" name="step5_3" id="step5_3_no" onclick="step5_3SelectNo()">
 					<label for="step5_3_no">ยังชี้อวัยวะตามคำบอกไม่ได้เลย</label>
@@ -155,15 +157,16 @@ var backlogQuestion = "no";
 	</div>
 
 	<div id="step6" style="text-align:center;">
-		<h3>เด็กมีทักษะความเข้าใจภาษาที่สงสัยว่าอาจจะล่าช้า กรุณาประเมินว่าเด็กมีปัจจัยดังต่อไปนี้ ที่อาจสัมพันธ์กับการได้ยินบกพร่องหรือไม่ </h3>
-		<label id="step6Choice">1. ท่านในฐานะผู้เลี้ยงดูกังวลเกี่ยวกับการได้ยินของเด็ก</label><br>
+		<h3>เด็กมีปัจจัยเสี่ยงที่อาจสัมพันธ์กับการได้ยินบกพร่องหรือไม่<br> เช่น 
+มีสมาชิกในครอบครัวมีการได้ยินผิดปกติแต่กำเนิด น้ำหนักแรกเกิดน้อยกว่า 1500 กรัมหรือเคยอยู่ในหอผู้ป่วยวิกฤตในช่วงแรกเกิดนานมากกว่า 5 วัน แรกเกิดมีภาวะตัวเหลืองจนต้องเปลี่ยนถ่ายเลือด เป็นต้น	(หากไม่แน่ใจข้อใด ควรปรึกษาแพทย์)
+</h3>
 		<fieldset data-role="controlgroup">
 			<input type="radio" name="step6" id="step6_no" onclick="step6SelectNo()">
-			<label for="step6_no">ไม่ใช่</label>
+			<label for="step6_no">ไม่มีปัจจัยเสี่ยงเลย</label>
 			<input type="radio" name="step6" id="step6_yes" onclick="step6SelectYes()">
-			<label for="step6_yes">ใช่</label>
+			<label for="step6_yes">มีปัจจัยเสี่ยง</label>
 		</fieldset>
-		<a href="" data-role="button" data-theme="b" id="nextStep6" class="ui-disabled" onclick="nextStep6_1()">Next</a>
+		<a href="" data-role="button" data-theme="b" id="nextStep6" class="ui-disabled" onclick="calStep6()">Next</a>
 	</div>
 
 	<div id="result1" style="text-align:center;">
@@ -191,7 +194,7 @@ var backlogQuestion = "no";
 	<div id="result3" style="text-align:center;">
 		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
 			<h3>result3</h3>
-			<h3>เด็กยังอาจมีความเข้าใจภาษาปกติ แต่ไม่พร้อมในบางเรื่อง แนะนำให้สอนและประเมินซ้ำในช่วง 2-4 สัปดาห์หลังจากนี้ ซึ่งหากยังไม่แน่ใจว่าเด็กผิดปกติหรือไม่ ควรพิจารณาปรึกษาแพทย์ </h3>
+			<h3>เด็กยังอาจมีความเข้าใจภาษาปกติ แต่ไม่พร้อมในบางเรื่อง แนะนำให้สอนและประเมินซ้ำในช่วง 2-4 สัปดาห์หลังจากนี้ ซึ่งหากยังไม่แน่ใจว่าเด็กผิดปกติหรือไม่ ควรพิจารณาปรึกษาแพทย์</h3>
 		</div>
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
@@ -202,7 +205,7 @@ var backlogQuestion = "no";
 	<div id="result4" style="text-align:center;">
 		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
 			<h3>result4</h3>
-			<h3>เด็กไม่มีปัจจัยเสี่ยงต่อการได้ยินบกพร่อง ดังนั้นท่านควรส่งเสริมพัฒนาการ โดยเฉพาะทักษะด้านความเข้าใจภาษาเพิ่มเติม หากไม่ดีขึ้นจนมีทักษะความสามารถใกล้เคียงเด็กวัยเดียวกัน ในช่วง 1-2 เดือนข้างหน้า ควรพิจารณาปรึกษาแพทย์ </h3>
+			<h3>เด็กไม่มีปัจจัยเสี่ยงต่อการได้ยินบกพร่อง ดังนั้นท่านควรส่งเสริมพัฒนาการ โดยเฉพาะทักษะด้านความเข้าใจภาษาเพิ่มเติม หากไม่ดีขึ้นจนมีทักษะความสามารถใกล้เคียงเด็กวัยเดียวกัน ในช่วง 2-4 สัปดาห์ข้างหน้า ควรพิจารณาปรึกษาแพทย์</h3>
 		</div>
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
@@ -214,7 +217,7 @@ var backlogQuestion = "no";
 		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
 			<div style="text-align:center;">
 				<h3>result5</h3>
-				<h3>เด็กมีปัจจัยเสี่ยงที่อาจจะมีการได้ยินบกพร่องบางส่วน ควรพิจารณาปรึกษาแพทย์ เพื่อตรวจการได้ยินต่อไป </h3>
+				<h3>เด็กมีปัจจัยเสี่ยงที่อาจจะมีการได้ยินบกพร่องบางส่วน ควรพิจารณาปรึกษาแพทย์ เพื่อตรวจการได้ยินต่อไป</h3>
 			</div>
 		</div>
 		<div style="text-align:center;">
@@ -329,7 +332,7 @@ var step5_4;
 var pictureHomeSelectStatus;
 var pictureDogSelectStatus;
 var pictureWaterglassSelectStatus;
-var pictureBallSelectStatus;
+var pictureShoeSelectStatus;
 
 var step5_2_1_pictureAns;
 var step5_2_2_pictureAns;
@@ -342,16 +345,6 @@ var step5_2_3_select;
 var step5_2_4_select;
 
 var step6;
-var step6_1;
-var step6_2;
-var step6_3;
-var step6_4;
-var step6_5;
-var step6_6;
-var step6_7;
-var step6_8;
-var step6_9;
-var step6_10;
 
 var result;
 var inspectThoroughlyPhoneVal;
@@ -373,7 +366,7 @@ function resetValueTest(){
 	pictureHomeSelectStatus = "default";
 	pictureDogSelectStatus = "default";
 	pictureWaterglassSelectStatus = "default";
-	pictureBallSelectStatus = "default";
+	pictureShoeSelectStatus = "default";
 
 	step5_2_1_pictureAns = "default";
 	step5_2_2_pictureAns = "default";
@@ -386,16 +379,6 @@ function resetValueTest(){
 	step5_2_4_select = "default";
 
 	step6 = "default";
-	step6_1 = "default";
-	step6_2 = "default";
-	step6_3 = "default";
-	step6_4 = "default";
-	step6_5 = "default";
-	step6_6 = "default";
-	step6_7 = "default";
-	step6_8 = "default";
-	step6_9 = "default";
-	step6_10 = "default";
 
 	result = "default";
 	inspectThoroughlyPhoneVal = "default";
@@ -445,17 +428,6 @@ function showValueTest(){
 
 	console.log("step6:");
 	console.log(step6);
-	console.log("step6 (1-10):");
-	console.log(step6_1);
-	console.log(step6_2);
-	console.log(step6_3);
-	console.log(step6_4);
-	console.log(step6_5);
-	console.log(step6_6);
-	console.log(step6_7);
-	console.log(step6_8);
-	console.log(step6_9);
-	console.log(step6_10);
 
 	console.log("Result:");
 	console.log(result);
@@ -466,12 +438,12 @@ function showValueTest(){
 	console.log("------------");
 }
 function LOG(){
-	var aa =  "birthDate="+birthDate+"&step1="+step1+"&step2="+step2+"&step3="+step3+"&step4="+step4+"&step5Point="+step5Point+"&step5_1="+step5_1+"&step5_2Point="+step5_2Point+"&step5_3="+step5_3+"&step5_3_yes="+step5_3_yes+"&step5_4="+step5_4+"&step5_2_1_pictureAns="+step5_2_1_pictureAns+"&step5_2_2_pictureAns="+step5_2_2_pictureAns+"&step5_2_3_pictureAns="+step5_2_3_pictureAns+"&step5_2_4_pictureAns="+step5_2_4_pictureAns+"&step5_2_1_select="+step5_2_1_select+"&step5_2_2_select="+step5_2_2_select+"&step5_2_3_select="+step5_2_3_select+"&step5_2_4_select="+step5_2_4_select+"&step6="+step6+"&step6_1="+step6_1+"&step6_2="+step6_2+"&step6_3="+step6_3+"&step6_4="+step6_4+"&step6_5="+step6_5+"&step6_6="+step6_6+"&step6_7="+step6_7+"&step6_8="+step6_8+"&step6_9="+step6_9+"&step6_10="+step6_10+"&result="+result+"&inspectThoroughlyPhoneVal="+inspectThoroughlyPhoneVal;
+	var aa =  "birthDate="+birthDate+"&step1="+step1+"&step2="+step2+"&step3="+step3+"&step4="+step4+"&step5Point="+step5Point+"&step5_1="+step5_1+"&step5_2Point="+step5_2Point+"&step5_3="+step5_3+"&step5_3_yes="+step5_3_yes+"&step5_4="+step5_4+"&step5_2_1_pictureAns="+step5_2_1_pictureAns+"&step5_2_2_pictureAns="+step5_2_2_pictureAns+"&step5_2_3_pictureAns="+step5_2_3_pictureAns+"&step5_2_4_pictureAns="+step5_2_4_pictureAns+"&step5_2_1_select="+step5_2_1_select+"&step5_2_2_select="+step5_2_2_select+"&step5_2_3_select="+step5_2_3_select+"&step5_2_4_select="+step5_2_4_select+"&step6="+step6+"&result="+result+"&inspectThoroughlyPhoneVal="+inspectThoroughlyPhoneVal;
 	console.log(aa);
 }
 function sentData(){
 	backlog = "inProcess";
-	var data = "birthDate="+birthDate+"&step1="+step1+"&step2="+step2+"&step3="+step3+"&step4="+step4+"&step5Point="+step5Point+"&step5_1="+step5_1+"&step5_2Point="+step5_2Point+"&step5_3="+step5_3+"&step5_3_yes="+step5_3_yes+"&step5_4="+step5_4+"&step5_2_1_pictureAns="+step5_2_1_pictureAns+"&step5_2_2_pictureAns="+step5_2_2_pictureAns+"&step5_2_3_pictureAns="+step5_2_3_pictureAns+"&step5_2_4_pictureAns="+step5_2_4_pictureAns+"&step5_2_1_select="+step5_2_1_select+"&step5_2_2_select="+step5_2_2_select+"&step5_2_3_select="+step5_2_3_select+"&step5_2_4_select="+step5_2_4_select+"&step6="+step6+"&step6_1="+step6_1+"&step6_2="+step6_2+"&step6_3="+step6_3+"&step6_4="+step6_4+"&step6_5="+step6_5+"&step6_6="+step6_6+"&step6_7="+step6_7+"&step6_8="+step6_8+"&step6_9="+step6_9+"&step6_10="+step6_10+"&result="+result+"&inspectThoroughlyPhoneVal="+inspectThoroughlyPhoneVal;
+	var data = "birthDate="+birthDate+"&step1="+step1+"&step2="+step2+"&step3="+step3+"&step4="+step4+"&step5Point="+step5Point+"&step5_1="+step5_1+"&step5_2Point="+step5_2Point+"&step5_3="+step5_3+"&step5_3_yes="+step5_3_yes+"&step5_4="+step5_4+"&step5_2_1_pictureAns="+step5_2_1_pictureAns+"&step5_2_2_pictureAns="+step5_2_2_pictureAns+"&step5_2_3_pictureAns="+step5_2_3_pictureAns+"&step5_2_4_pictureAns="+step5_2_4_pictureAns+"&step5_2_1_select="+step5_2_1_select+"&step5_2_2_select="+step5_2_2_select+"&step5_2_3_select="+step5_2_3_select+"&step5_2_4_select="+step5_2_4_select+"&step6="+step6+"&result="+result+"&inspectThoroughlyPhoneVal="+inspectThoroughlyPhoneVal;
     $.ajax({
 		type: "POST",
 	 	url: "http://sd.preecha.in.th/submitTestData.php",
@@ -891,12 +863,12 @@ function deselectStep5_2Picture(){
 	$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
 	$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
 	$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
-	$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+	$('#pictureShoe').attr('style','border:5px solid white;width:150px; height:150px;');
 
 	pictureHomeSelectStatus = "deselect";
 	pictureDogSelectStatus = "deselect";
 	pictureWaterglassSelectStatus = "deselect";
-	pictureBallSelectStatus = "deselect";
+	pictureShoeSelectStatus = "deselect";
 }
 
 function checkStep5_2_Ans(){
@@ -913,9 +885,9 @@ function checkStep5_2_Ans(){
 			step5_2_1_pictureAns = "wrong";
 			step5_2_1_select = "waterglass";
 		}
-		else if(pictureBallSelectStatus == "selected"){
+		else if(pictureShoeSelectStatus == "selected"){
 			step5_2_1_pictureAns = "wrong";
-			step5_2_1_select = "ball";
+			step5_2_1_select = "shoe";
 		}
 	}
 	else if($('#nextStep5_2').attr('onclick')=="nextStep5_2_2()"){
@@ -931,9 +903,9 @@ function checkStep5_2_Ans(){
 			step5_2_2_pictureAns = "wrong";
 			step5_2_2_select = "waterglass";
 		}
-		else if(pictureBallSelectStatus == "selected"){
+		else if(pictureShoeSelectStatus == "selected"){
 			step5_2_2_pictureAns = "wrong";
-			step5_2_2_select = "ball";
+			step5_2_2_select = "shoe";
 		}
 	}
 	else if($('#nextStep5_2').attr('onclick')=="nextStep5_2_3()"){
@@ -949,9 +921,9 @@ function checkStep5_2_Ans(){
 			step5_2_3_pictureAns = "correct";
 			step5_2_3_select = "waterglass";
 		}
-		else if(pictureBallSelectStatus == "selected"){
+		else if(pictureShoeSelectStatus == "selected"){
 			step5_2_3_pictureAns = "wrong";
-			step5_2_3_select = "ball";
+			step5_2_3_select = "shoe";
 		}	
 	}
 	else if($('#nextStep5_2').attr('onclick')=="nextStep5_2_4()"){
@@ -967,9 +939,9 @@ function checkStep5_2_Ans(){
 			step5_2_4_pictureAns = "wrong";
 			step5_2_4_select = "waterglass";
 		}
-		else if(pictureBallSelectStatus == "selected"){
+		else if(pictureShoeSelectStatus == "selected"){
 			step5_2_4_pictureAns = "correct";
-			step5_2_4_select = "ball";
+			step5_2_4_select = "shoe";
 		}
 	}
 }
@@ -986,12 +958,12 @@ function pictureHomeSelect() {
 		$('#pictureHome').attr('style','border:5px solid red;width:150px; height:150px;');
 		$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
 		$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
-		$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureShoe').attr('style','border:5px solid white;width:150px; height:150px;');
 
 		pictureHomeSelectStatus = "selected";
 		pictureDogSelectStatus = "deselect";
 		pictureWaterglassSelectStatus = "deselect";
-		pictureBallSelectStatus = "deselect";
+		pictureShoeSelectStatus = "deselect";
 		
 		$('#nextStep5_2').removeClass('ui-disabled');
 		checkStep5_2_Ans();
@@ -1009,12 +981,12 @@ function pictureDogSelect() {
 		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
 		$('#pictureDog').attr('style','border:5px solid red;width:150px; height:150px;');
 		$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
-		$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureShoe').attr('style','border:5px solid white;width:150px; height:150px;');
 		
 		pictureHomeSelectStatus = "deselect";
 		pictureDogSelectStatus = "selected";
 		pictureWaterglassSelectStatus = "deselect";
-		pictureBallSelectStatus = "deselect";
+		pictureShoeSelectStatus = "deselect";
 		
 		$('#nextStep5_2').removeClass('ui-disabled');
 		checkStep5_2_Ans();
@@ -1032,22 +1004,22 @@ function pictureWaterglassSelect() {
 		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
 		$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
 		$('#pictureWaterglass').attr('style','border:5px solid red;width:150px; height:150px;');
-		$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+		$('#pictureShoe').attr('style','border:5px solid white;width:150px; height:150px;');
 
 		pictureHomeSelectStatus = "deselect";
 		pictureDogSelectStatus = "deselect";
 		pictureWaterglassSelectStatus = "selected";
-		pictureBallSelectStatus = "deselect";
+		pictureShoeSelectStatus = "deselect";
 		
 		$('#nextStep5_2').removeClass('ui-disabled');
 		checkStep5_2_Ans();
 	}	
 }
 
-function pictureBallSelect() {
-	if(pictureBallSelectStatus == "selected"){
-		pictureBallSelectStatus = "deselect";
-		$('#pictureBall').attr('style','border:5px solid white;width:150px; height:150px;');
+function pictureShoeSelect() {
+	if(pictureShoeSelectStatus == "selected"){
+		pictureShoeSelectStatus = "deselect";
+		$('#pictureShoe').attr('style','border:5px solid white;width:150px; height:150px;');
 		
 		$('#nextStep5_2').addClass('ui-disabled');
 	}
@@ -1055,12 +1027,12 @@ function pictureBallSelect() {
 		$('#pictureHome').attr('style','border:5px solid white;width:150px; height:150px;');
 		$('#pictureDog').attr('style','border:5px solid white;width:150px; height:150px;');
 		$('#pictureWaterglass').attr('style','border:5px solid white;width:150px; height:150px;');
-		$('#pictureBall').attr('style','border:5px solid red;width:150px; height:150px;');
+		$('#pictureShoe').attr('style','border:5px solid red;width:150px; height:150px;');
 
 		pictureHomeSelectStatus = "deselect";
 		pictureDogSelectStatus = "deselect";
 		pictureWaterglassSelectStatus = "deselect";
-		pictureBallSelectStatus = "selected";
+		pictureShoeSelectStatus = "selected";
 		
 		$('#nextStep5_2').removeClass('ui-disabled');
 		checkStep5_2_Ans();
@@ -1092,7 +1064,7 @@ function cantStep5_2_3(){
 	step5_2_3_pictureAns = "cant";
 	step5_2_3_select = "-";
 	
-	$('#step5_2Topic').text('2.4 ชี้ภาพบอล');
+	$('#step5_2Topic').text('2.4 ชี้ภาพรองเท้า');
 	deselectStep5_2Picture();
 	$('#nextStep5_2').addClass('ui-disabled');
 	$('#cantStep5_2').attr('onclick','cantStep5_2_4()');
@@ -1224,164 +1196,23 @@ function enterStep6(){
 	$("#result5").hide();
 	$("#languageDevelopment").hide();
 	$("#inspectThoroughly").hide();
-	step6=0;
 }
 
 function step6SelectNo() {
-	//step6 = "no";
+	step6 = "no";
 	$('#nextStep6').removeClass('ui-disabled');
-
-	if($('#nextStep6').attr('onclick')=="nextStep6_1()"){
-		step6_1 = "no";
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_2()"){
-		step6_2 = "no";
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_3()"){
-		step6_3 = "no";
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_4()"){
-		step6_4 = "no";
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_5()"){
-		step6_5 = "no";
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_6()"){
-		step6_6 = "no";
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_7()"){
-		step6_7 = "no";
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_8()"){
-		step6_8 = "no";
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_9()"){
-		step6_9 = "no";
-	}
-	else if($('#nextStep6').attr('onclick')=="calStep6()"){
-		step6_10 = "no";
-	}
 }
 
 function step6SelectYes() {
-	//step6 = "yes";
+	step6 = "yes";
 	$('#nextStep6').removeClass('ui-disabled');
-
-	if($('#nextStep6').attr('onclick')=="nextStep6_1()"){
-		step6_1 = "yes";
-		step6++;
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_2()"){
-		step6_2 = "yes";
-		step6++;
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_3()"){
-		step6_3 = "yes";
-		step6++;
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_4()"){
-		step6_4 = "yes";
-		step6++;
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_5()"){
-		step6_5 = "yes";
-		step6++;
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_6()"){
-		step6_6 = "yes";
-		step6++;
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_7()"){
-		step6_7 = "yes";
-		step6++;
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_8()"){
-		step6_8 = "yes";
-		step6++;
-	}
-	else if($('#nextStep6').attr('onclick')=="nextStep6_9()"){
-		step6_9 = "yes";
-		step6++;
-	}
-	else if($('#nextStep6').attr('onclick')=="calStep6()"){
-		step6_10 = "yes";
-		step6++;
-	}
-}
-
-function deselectStep6(){
-	$('#step6_no').prop('checked', false).checkboxradio( "refresh" );
-	$('#step6_yes').prop('checked', false).checkboxradio( "refresh" );
-}
-
-function nextStep6_1(){
-	$('#step6Choice').text('2. ในครอบครัวมีสมาชิกฝ่ายใดฝ่ายหนึ่งที่มีการได้ยินผิดปกติแบบถาวร');
-	deselectStep6();
-	$('#nextStep6').addClass('ui-disabled');
-	$('#nextStep6').attr('onclick','nextStep6_2()');
-}
-
-function nextStep6_2(){
-	$('#step6Choice').text('3. เคยอยู่ในหอผู้ป่วยวิกฤตในช่วงแรกเกิดนานมากกว่า 5 วัน หรือมีประวัติว่าเคยได้รับการรักษาอย่างใดอย่างหนึ่งดังต่อไปนี้ คือ ใช้เครื่องช่วยหายใจ ได้รับยาที่มีผลข้างเคียงเป็นพิษต่อระบบประสาทการได้ยิน และภาวะตัวเหลืองจนต้องเปลี่ยนถ่ายเลือด');
-	deselectStep6();
-	$('#nextStep6').addClass('ui-disabled');
-	$('#nextStep6').attr('onclick','nextStep6_3()');
-}
-
-function nextStep6_3(){
-	$('#step6Choice').text('4. มีการติดเชื้อช่วงก่อนคลอด เช่น หัดเยอรมัน ซิฟิลิส เริม CMV toxoplasmosis เป็นต้น');
-	deselectStep6();
-	$('#nextStep6').addClass('ui-disabled');
-	$('#nextStep6').attr('onclick','nextStep6_4()');
-}
-
-function nextStep6_4(){
-	$('#step6Choice').text('5. ความผิดปกติแต่กำเนิดของศีรษะและใบหน้า ส่วนใบหู รูหู มีติ่งเนื้อหรือรูบริเวณหน้าหู');
-	deselectStep6();
-	$('#nextStep6').addClass('ui-disabled');
-	$('#nextStep6').attr('onclick','nextStep6_5()');
-}
-
-function nextStep6_5(){
-	$('#step6Choice').text('6. มีปอยผมขาวด้านหน้า (white forelock) ซึ่งเป็นอาการแสดงหนึ่งของโรค Warrdenburg Syndrome');
-	deselectStep6();
-	$('#nextStep6').addClass('ui-disabled');
-	$('#nextStep6').attr('onclick','nextStep6_6()');
-}
-
-function nextStep6_6(){
-	$('#step6Choice').text('7. เคยมีการติดเชื้อเยื่อหุ้มสมองอักเสบ');
-	deselectStep6();
-	$('#nextStep6').addClass('ui-disabled');
-	$('#nextStep6').attr('onclick','nextStep6_7()');
-}
-
-function nextStep6_7(){
-	$('#step6Choice').text('8. มีโรคประจำตัวที่เป็นความผิดปกติเกี่ยวกับสมองหรือระบบประสาท');
-	deselectStep6();
-	$('#nextStep6').addClass('ui-disabled');
-	$('#nextStep6').attr('onclick','nextStep6_8()');
-}
-
-function nextStep6_8(){
-	$('#step6Choice').text('9. เคยได้รับการบาดเจ็บที่ศีรษะ โดยเฉพาะมีกระดูกแตกหักบริเวณฐานกะโหลก ซึ่งรุนแรงจนต้องพักรักษาตัวในโรงพยาบาล');
-	deselectStep6();
-	$('#nextStep6').addClass('ui-disabled');
-	$('#nextStep6').attr('onclick','nextStep6_9()');
-}
-
-function nextStep6_9(){
-	$('#step6Choice').text('10. เคยได้รับยาเคมีบำบัด');
-	deselectStep6();
-	$('#nextStep6').addClass('ui-disabled');
-	$('#nextStep6').attr('onclick','calStep6()');
 }
 
 function calStep6(){
-	if(step6 > 0){
+	if(step6 == "yes"){
 		enterResult5();
 	}
-	else{
+	else if(step6 == "no") {
 		enterResult4();
 	}
 }
