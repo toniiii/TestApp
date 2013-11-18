@@ -29,22 +29,24 @@ var backlogQuestion = "no";
     <a href="" data-role="button" data-inline="false" onclick="enterAbout()">About</a>
 </div>
 
-<div id="test">
+<div id="test" align="center">
 	<div data-role="header" data-theme="b">
 		<a href="" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true" onclick=enterHome()></a>
 		<a href="" data-role="button" data-icon="info" data-iconpos="notext" data-inline="true" onclick=showValueTest()></a>
 		<h1>Test</h1>
 	</div>
-	<div id="disclaimer">
-	<textarea name="textarea" id="textarea" style="height:150px;" readonly="true">
-		วัตถุประสงค์ของการจัดทำโปรแกรมนี้ คือ เพื่อช่วยให้ผู้เลี้ยงดู ตลอดจนผู้เกี่ยวข้องในการดูแลเด็ก สามารถประเมินพัฒนาการด้านภาษาของเด็กในช่วงอายุประมาณ 18 เดือน และให้การช่วยเหลือเบื้องต้นได้อย่างเหมาะสม โดยที่แนวทางในโปรแกรมนี้ไม่สามารถนำมาใช้เพื่อทดแทนการวินิจฉัยโดยแพทย์ได้ 
-อนึ่ง คณะผู้จัดทำจะขอทำการเก็บรวบรวมข้อมูล ที่ได้รับจากการใช้โปรแกรมนี้ เพื่อนำไปศึกษาวิจัย วิเคราะห์และนำเสนอผลงานด้านวิชาการในภาพรวมทั้งหมดเท่านั้น โดยจะไม่เผยแพร่ต่อสาธารณะเป็นรายบุคคล และจะนำผลการวิเคราะห์ดังกล่าวไปปรับปรุงโปรแกรมเพื่อให้เกิดประสิทธิภาพดียิ่งขึ้นในโอกาสต่อไป
-	</textarea>
-	<label><input type="checkbox" name="disclaimer" onclick="checkButtonDisclaimer(this);">ฉันยินยอมข้อตกลงข้างต้น</label>
-   <div style="text-align:center;">
-		<a href="" data-role="button" data-inline="true" id="acceptButton"  class="ui-disabled" onclick=enterBirthDate()  data-theme="b">Accept</a>
-		<a href="" data-role="button" data-inline="true">Cancel</a>
-	</div>
+
+	<div class="ui-body ui-body-c ui-corner-all" style="width:95%;">
+	<div id="disclaimer"> 
+		<textarea name="textarea" id="textarea" style="height:150px;" readonly="true">
+				วัตถุประสงค์ของการจัดทำโปรแกรมนี้ คือ เพื่อช่วยให้ผู้เลี้ยงดู ตลอดจนผู้เกี่ยวข้องในการดูแลเด็ก สามารถประเมินพัฒนาการด้านภาษาของเด็กในช่วงอายุประมาณ 18 เดือน และให้การช่วยเหลือเบื้องต้นได้อย่างเหมาะสม โดยที่แนวทางในโปรแกรมนี้ไม่สามารถนำมาใช้เพื่อทดแทนการวินิจฉัยโดยแพทย์ได้ 
+		อนึ่ง คณะผู้จัดทำจะขอทำการเก็บรวบรวมข้อมูล ที่ได้รับจากการใช้โปรแกรมนี้ เพื่อนำไปศึกษาวิจัย วิเคราะห์และนำเสนอผลงานด้านวิชาการในภาพรวมทั้งหมดเท่านั้น โดยจะไม่เผยแพร่ต่อสาธารณะเป็นรายบุคคล และจะนำผลการวิเคราะห์ดังกล่าวไปปรับปรุงโปรแกรมเพื่อให้เกิดประสิทธิภาพดียิ่งขึ้นในโอกาสต่อไป
+		</textarea>
+		<label><input type="checkbox" name="disclaimer" onclick="checkButtonDisclaimer(this);">ฉันยินยอมข้อตกลงข้างต้น</label>
+		<div style="text-align:center;">
+			<a href="" data-role="button" data-inline="true" id="acceptButton" data-theme="b"  class="ui-disabled" onclick=enterBirthDate()>Accept</a>
+			<a href="" data-role="button" data-inline="true">Cancel</a>
+		</div>
 	</div>
 
 	<div id="birthDate" style="text-align:center;">
@@ -165,8 +167,10 @@ var backlogQuestion = "no";
 	</div>
 
 	<div id="result1" style="text-align:center;">
-		<h3>result1</h3>
-		<h3>สรุปว่าเด็กมีพัฒนาการด้านภาษาปกติ </h3>
+		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
+			<h3>result1</h3>
+			<h3>สรุปว่าเด็กมีพัฒนาการด้านภาษาปกติ </h3>
+		</div>
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
 			<a href="" data-role="button" data-inline="true" data-theme="b" id="nextResult1" onclick="enterInspectThoroughly()">Next</a>
@@ -174,8 +178,10 @@ var backlogQuestion = "no";
 	</div>
 
 	<div id="result2" style="text-align:center;">
-		<h3>result2</h3>
-		<h3>เด็กมีพัฒนาการด้านความเข้าใจภาษาปกติสมวัย แต่พูดช้ากว่าเด็กวัยเดียวกันเล็กน้อย เด็กกลุ่มนี้มีการพยากรณ์โรคในระยะยาวที่ดี คือเกือบทั้งหมดจะสามารถพูด สื่อสารและเรียนรู้ได้ดีเหมือนเด็กวัยเดียวกันเมื่ออายุมากขึ้น อย่างไรก็ตาม หากไม่แน่ใจควรติดตามสังเกตพัฒนาการเป็นระยะ โดยเฉพาะในช่วงปฐมวัย หรือ 6 ปีแรกของชีวิต</h3>
+		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
+			<h3>result2</h3>
+			<h3>เด็กมีพัฒนาการด้านความเข้าใจภาษาปกติสมวัย แต่พูดช้ากว่าเด็กวัยเดียวกันเล็กน้อย เด็กกลุ่มนี้มีการพยากรณ์โรคในระยะยาวที่ดี คือเกือบทั้งหมดจะสามารถพูด สื่อสารและเรียนรู้ได้ดีเหมือนเด็กวัยเดียวกันเมื่ออายุมากขึ้น อย่างไรก็ตาม หากไม่แน่ใจควรติดตามสังเกตพัฒนาการเป็นระยะ โดยเฉพาะในช่วงปฐมวัย หรือ 6 ปีแรกของชีวิต</h3>
+		</div>
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
 			<a href="" data-role="button" data-inline="true" data-theme="b" id="nextResult2" onclick="enterInspectThoroughly()">Next</a>
@@ -183,8 +189,10 @@ var backlogQuestion = "no";
 	</div>
 
 	<div id="result3" style="text-align:center;">
-		<h3>result3</h3>
-		<h3>เด็กยังอาจมีความเข้าใจภาษาปกติ แต่ไม่พร้อมในบางเรื่อง แนะนำให้สอนและประเมินซ้ำในช่วง 2-4 สัปดาห์หลังจากนี้ ซึ่งหากยังไม่แน่ใจว่าเด็กผิดปกติหรือไม่ ควรพิจารณาปรึกษาแพทย์ </h3>
+		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
+			<h3>result3</h3>
+			<h3>เด็กยังอาจมีความเข้าใจภาษาปกติ แต่ไม่พร้อมในบางเรื่อง แนะนำให้สอนและประเมินซ้ำในช่วง 2-4 สัปดาห์หลังจากนี้ ซึ่งหากยังไม่แน่ใจว่าเด็กผิดปกติหรือไม่ ควรพิจารณาปรึกษาแพทย์ </h3>
+		</div>
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
 			<a href="" data-role="button" data-inline="true" data-theme="b" id="nextResult3" onclick="enterInspectThoroughly()">Next</a>
@@ -192,8 +200,10 @@ var backlogQuestion = "no";
 	</div>
 
 	<div id="result4" style="text-align:center;">
-		<h3>result4</h3>
-		<h3>เด็กไม่มีปัจจัยเสี่ยงต่อการได้ยินบกพร่อง ดังนั้นท่านควรส่งเสริมพัฒนาการ โดยเฉพาะทักษะด้านความเข้าใจภาษาเพิ่มเติม หากไม่ดีขึ้นจนมีทักษะความสามารถใกล้เคียงเด็กวัยเดียวกัน ในช่วง 1-2 เดือนข้างหน้า ควรพิจารณาปรึกษาแพทย์ </h3>
+		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
+			<h3>result4</h3>
+			<h3>เด็กไม่มีปัจจัยเสี่ยงต่อการได้ยินบกพร่อง ดังนั้นท่านควรส่งเสริมพัฒนาการ โดยเฉพาะทักษะด้านความเข้าใจภาษาเพิ่มเติม หากไม่ดีขึ้นจนมีทักษะความสามารถใกล้เคียงเด็กวัยเดียวกัน ในช่วง 1-2 เดือนข้างหน้า ควรพิจารณาปรึกษาแพทย์ </h3>
+		</div>
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
 			<a href="" data-role="button" data-inline="true" data-theme="b" id="nextResult4" onclick="enterInspectThoroughly()">Next</a>
@@ -201,24 +211,30 @@ var backlogQuestion = "no";
 	</div>
 
 	<div id="result5">
-		<div style="text-align:center;">
-			<h3>result5</h3>
-			<h3>เด็กมีปัจจัยเสี่ยงที่อาจจะมีการได้ยินบกพร่องบางส่วน ควรพิจารณาปรึกษาแพทย์ เพื่อตรวจการได้ยินต่อไป </h3>
+		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
 			<div style="text-align:center;">
-				<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
-				<a href="" data-role="button" data-theme="b" data-inline="true"  id="nextResult5" onclick="enterInspectThoroughly()">Next</a>
+				<h3>result5</h3>
+				<h3>เด็กมีปัจจัยเสี่ยงที่อาจจะมีการได้ยินบกพร่องบางส่วน ควรพิจารณาปรึกษาแพทย์ เพื่อตรวจการได้ยินต่อไป </h3>
 			</div>
+		</div>
+		<div style="text-align:center;">
+			<a href="" data-role="button" data-inline="true" id="languageDevelopmentResult1" onclick="enterLanguageDevelopment()">พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</a>
+			<a href="" data-role="button" data-theme="b" data-inline="true"  id="nextResult5" onclick="enterInspectThoroughly()">Next</a>
 		</div>
 	</div>
 	
 	<div id="languageDevelopment">
-		<div style="text-align:center;">
-			<h3>พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</h3>
+		<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
+			<div style="text-align:center;">
+				<h3>พัฒนาการด้านภาษาปกติในเด็กวัย 18 เดือน</h3>
+			</div>
+			<div style="text-align:left;">
+				<label><br><b>ด้านการพูดและการสื่อสาร</b> – เด็กจะเริ่มพูดคำคุ้นเคย เช่น “พ่อ” “แม่” หรือชื่อคนในครอบครัวได้ที่อายุ 12 – 15 เดือน ต่อมาที่อายุประมาณ 18 เดือน เด็กจะเริ่มพูดคำศัพท์อื่นๆที่มีความหมาย โดยเฉพาะคำศัพท์ที่นอกเหนือจากคำซึ่งใช้เรียกคนหรือสัตว์เลี้ยงในบ้านมากขึ้นเรื่อยๆ จนกระทั่งอายุ 24 เดือน จำนวนคำศัพท์ที่พูดได้มีประมาณ 50-200 คำ และจะเริ่มนำคำมารวมกันเพื่อสื่อสารได้ เช่น “ไปเที่ยว” “ไม่เดิน” คำพูดอาจยังไม่ชัดเจนบ้าง แต่ผู้เลี้ยงดูฟังเข้าใจ ในกรณีที่เด็กยังไม่สามารถพูดเป็นคำ ที่อายุประมาณ 12-15 เดือนเป็นต้นไป เด็กมักจะสื่อสารความต้องการด้วยการใช้ภาษาท่าทางให้เห็นได้อย่างชัดเจน ได้แก่ การสบตาหรือใช้สายตาเพื่อสื่อสาร การชี้บอกความต้องการ รวมถึงการแสดงอารมณ์ผ่านสีหน้าท่าทาง<br><br>
+			<b>ด้านความเข้าใจภาษา</b> – เด็กที่อายุ 16-18 เดือน สามารถชี้อวัยวะตามสั่งได้อย่างถูกต้อง 1-3 ส่วน ทำตามคำสั่ง 1 ขั้นตอนที่ไม่มีท่าทางประกอบได้ ตลอดจนชี้รูปภาพตามคำบอกได้อย่างน้อย 1 รูป เมื่ออายุ 24 เดือน เด็กจะสามารถทำตามคำสั่ง 2 ขั้นตอนที่มีความสัมพันธ์กันได้ ชี้สิ่งต่างๆและรูปภาพตามคำบอกได้มากหลากหลาย เริ่มเข้าใจคำคุณศัพท์ที่บอกขนาด ได้แก่ ใหญ่ เล็ก ยาว สั้น และคำที่ใช้แสดงความรู้สึกได้<br><br>
+			<b>คำแนะนำในการเพิ่มทักษะด้านภาษาทั่วไป</b> : ควรพูดคุยเรื่องที่เด็กสนใจในชีวิตประจำวัน พูดสั้นๆด้วยคำพูดที่ฟังชัดเจน พยายามตั้งใจฟังในสิ่งที่เด็กพยายามสื่อสาร ไม่ว่าจะเป็นการส่งเสียงที่ไม่เป็นคำ หรือการใช้ภาษาท่าทาง เว้นจังหวะให้เด็กสื่อสารโต้ตอบบ่อยๆ ทำกิจกรรมที่ส่งเสริมพัฒนาการทางภาษาตามวัย ได้แก่ อ่านหนังสือนิทานให้ฟัง ร้องเพลง ควรหลีกเลี่ยงกิจกรรมที่ไม่ส่งเสริมการมีปฏิสัมพันธ์และการสื่อสาร เช่น การการดูรายการโทรทัศน์ การใช้คอมพิวเตอร์ หรืออุปกรณ์อื่นๆที่มีลักษณะเดียวกัน เป็นต้น<br>
+				</label>
+			</div>
 		</div>
-		<label><br><b>ด้านการพูดและการสื่อสาร</b> – เด็กจะเริ่มพูดคำคุ้นเคย เช่น “พ่อ” “แม่” หรือชื่อคนในครอบครัวได้ที่อายุ 12 – 15 เดือน ต่อมาที่อายุประมาณ 18 เดือน เด็กจะเริ่มพูดคำศัพท์อื่นๆที่มีความหมาย โดยเฉพาะคำศัพท์ที่นอกเหนือจากคำซึ่งใช้เรียกคนหรือสัตว์เลี้ยงในบ้านมากขึ้นเรื่อยๆ จนกระทั่งอายุ 24 เดือน จำนวนคำศัพท์ที่พูดได้มีประมาณ 50-200 คำ และจะเริ่มนำคำมารวมกันเพื่อสื่อสารได้ เช่น “ไปเที่ยว” “ไม่เดิน” คำพูดอาจยังไม่ชัดเจนบ้าง แต่ผู้เลี้ยงดูฟังเข้าใจ ในกรณีที่เด็กยังไม่สามารถพูดเป็นคำ ที่อายุประมาณ 12-15 เดือนเป็นต้นไป เด็กมักจะสื่อสารความต้องการด้วยการใช้ภาษาท่าทางให้เห็นได้อย่างชัดเจน ได้แก่ การสบตาหรือใช้สายตาเพื่อสื่อสาร การชี้บอกความต้องการ รวมถึงการแสดงอารมณ์ผ่านสีหน้าท่าทาง<br><br>
-	<b>ด้านความเข้าใจภาษา</b> – เด็กที่อายุ 16-18 เดือน สามารถชี้อวัยวะตามสั่งได้อย่างถูกต้อง 1-3 ส่วน ทำตามคำสั่ง 1 ขั้นตอนที่ไม่มีท่าทางประกอบได้ ตลอดจนชี้รูปภาพตามคำบอกได้อย่างน้อย 1 รูป เมื่ออายุ 24 เดือน เด็กจะสามารถทำตามคำสั่ง 2 ขั้นตอนที่มีความสัมพันธ์กันได้ ชี้สิ่งต่างๆและรูปภาพตามคำบอกได้มากหลากหลาย เริ่มเข้าใจคำคุณศัพท์ที่บอกขนาด ได้แก่ ใหญ่ เล็ก ยาว สั้น และคำที่ใช้แสดงความรู้สึกได้<br><br>
-	<b>คำแนะนำในการเพิ่มทักษะด้านภาษาทั่วไป</b> : ควรพูดคุยเรื่องที่เด็กสนใจในชีวิตประจำวัน พูดสั้นๆด้วยคำพูดที่ฟังชัดเจน พยายามตั้งใจฟังในสิ่งที่เด็กพยายามสื่อสาร ไม่ว่าจะเป็นการส่งเสียงที่ไม่เป็นคำ หรือการใช้ภาษาท่าทาง เว้นจังหวะให้เด็กสื่อสารโต้ตอบบ่อยๆ ทำกิจกรรมที่ส่งเสริมพัฒนาการทางภาษาตามวัย ได้แก่ อ่านหนังสือนิทานให้ฟัง ร้องเพลง ควรหลีกเลี่ยงกิจกรรมที่ไม่ส่งเสริมการมีปฏิสัมพันธ์และการสื่อสาร เช่น การการดูรายการโทรทัศน์ การใช้คอมพิวเตอร์ หรืออุปกรณ์อื่นๆที่มีลักษณะเดียวกัน เป็นต้น<br>
-		</label>
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-theme="b" data-inline="true" id="backLanguageDevelopment" data-inline="true" onclick="">Back</a>
 		</div>
@@ -233,6 +249,7 @@ var backlogQuestion = "no";
 		</div>
 	</div>
 
+</div>
 
 </div>
 
@@ -244,17 +261,24 @@ var backlogQuestion = "no";
 	</div>
 </div>
 
-<div id="question">
+<div id="question" align = "center">
 	<div data-role="header" data-theme="b">
 		<a href="" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true" onclick=enterHome()></a>
 		<h1>Question</h1>
 	</div>
-	<textarea cols="40" rows="10" name="questionMessage" id="questionMessage" placeholder="Message" data-clear-btn="true"></textarea>
-	<input type="email" data-clear-btn="true" name="questionEmail" id="questionEmail" value="" placeholder="E-mail" >
-	<div style="text-align:center;">
-		<a href="" data-role="button" data-theme="b" id="sendQuestionButton" data-icon="check" data-inline="true" class="ui-disabled" onclick=sendQuestion()>Send</a>
-		<a href="" data-role="button" id="cancelQuestionButton" data-inline="true" onclick=enterHome()>Cancel</a>
+	
+	<div class="ui-body ui-body-d ui-corner-all" style="width:95%;">
+		<div class="ui-body ui-body-c ui-corner-all" style="width:95%;">
+			<textarea cols="40" rows="10" name="questionMessage" id="questionMessage" placeholder="Message" data-clear-btn="true"></textarea>
+			<input type="email" data-clear-btn="true" name="questionEmail" id="questionEmail" value="" placeholder="E-mail" >
+		</div>
+
+		<div style="text-align:center;">
+			<a href="" data-role="button" data-theme="b" id="sendQuestionButton" data-icon="check" data-inline="true" class="ui-disabled" onclick=sendQuestion()>Send</a>
+			<a href="" data-role="button" id="cancelQuestionButton" data-inline="true" onclick=enterHome()>Cancel</a>
+		</div>
 	</div>
+
 </div>
 
 <div id="about">
