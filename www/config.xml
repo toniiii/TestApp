@@ -4,7 +4,7 @@
 	<access origin="http://sd.preecha.in.th" />
 	<access origin="http://sd.preecha.in.th/submitQuestion.php" />
 	<access origin="http://sd.preecha.in.th/submitTestData.php" />
-    <name>Speech Selay Screening</name>
+    <name>Speech Delay Screening</name>
     <description>
         speech delay screening description.
     </description>
