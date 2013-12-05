@@ -1230,7 +1230,7 @@ function step5_3SelectYes() {
 }
 
 function checkStep5_3_yes_value(){
-	if ($('#step5_3_yes_value').val() != "" && $('#step5_3_yes_value').val() != 0) {
+	if ($('#step5_3_yes_value').val() != "" && $('#step5_3_yes_value').val() > 1) {
 		step5_3_yes = $('#step5_3_yes_value').val();
 		$('#nextStep5_3').removeClass('ui-disabled');
 	} else {
