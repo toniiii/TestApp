@@ -35,8 +35,8 @@ var backlogQuestion = "no";
 		<a href="" data-role="button" data-icon="info" data-iconpos="notext" data-inline="true" onclick=showValueTest()></a>
 		<h1>Test</h1>
 	</div>
-
-	<div class="ui-body ui-body-c ui-corner-all">
+	
+	
 	<div id="disclaimer"> 
 		<div class="ui-body ui-body-d ui-corner-all" align="left">
 		<!--<textarea name="textarea" id="textarea" style="height:150px;" readonly="true">-->
@@ -46,10 +46,24 @@ var backlogQuestion = "no";
 		</div>
 		<label><input type="checkbox" name="disclaimer" onclick="checkButtonDisclaimer(this);">ข้าพเจ้าเข้าใจข้อความดังกล่าวข้างต้นแล้ว และยินยอมให้เก็บข้อมูลเพื่อนำไปใช้ประโยชน์</label>
 		<div style="text-align:center;">
-			<a href="" data-role="button" data-inline="true" id="acceptButton" data-theme="b"  class="ui-disabled" onclick=enterBirthDate()>Accept</a>
+			<a href="" data-role="button" data-inline="true" id="acceptButton" data-theme="b"  class="ui-disabled" onclick=enterPin()>Accept</a>
 			<a href="" data-role="button" data-inline="true">Cancel</a>
 		</div>
 	</div>
+
+	<div id="pin" style="text-align:center;">
+		<h3>กรุณากรอกเลขประจำตัวประชาชนของเด็ก</h3>
+		<input type="text" data-clear-btn="true" name="pinBox" id="pinBox" value="">
+		<a href="" data-role="button" data-theme="b" id="nextPin" class="ui-disabled" onclick="enterName()">Next</a>
+	</div>
+	
+	<div id="name" style="text-align:center;">
+		<h3>กรุณากรอกชื่อและนามสกุลของเด็ก</h3>
+		<input type="text" data-clear-btn="true" name="nameBox" id="nameBox" placeholder="ชื่อ" value="">
+		<input type="text" data-clear-btn="true" name="surnameBox" id="surnameBox" placeholder="นามสกุล" value="">
+		<a href="" data-role="button" data-theme="b" id="nextName" class="ui-disabled" onclick="enterBirthDate()">Next</a>
+	</div>
+
 
 	<div id="birthDate" style="text-align:center;">
 		<h3>กรุณากรอกวันเกิดของเด็ก</h3>
@@ -243,16 +257,17 @@ var backlogQuestion = "no";
 		</div>
 	</div>
 
-	<div id="inspectThoroughly">
-		<h3>หากท่านสนใจนำเด็กของท่านมาพบแพทย์เพื่อตรวจพัฒนาการด้านภาษาอย่างละเอียดต่อไป กรุณากรอกเบอร์โทรศัพท์ที่ท่านสะดวกให้ติดต่อกลับเพื่อทำการนัดหมาย (เฉพาะในช่วงมกราคม พ.ศ.2556 – มีนาคม พ.ศ.2557)</h3>
+	<div id="inspectThoroughly" align = "center">
+		<div style="text-align:center;">
+			<h3><u><i>ผลจากการทำแบบทดสอบจะแม่นยำมากขึ้น หากเป็นเด็กที่คลอดครบกำหนด และน้ำหนักตัวแรกเกิดเกิน 2500 กรัม</i></u><br>
+	หากท่านสนใจนำเด็กของท่านมาพบแพทย์เพื่อตรวจพัฒนาการด้านภาษาอย่างละเอียดต่อไป กรุณากรอกเบอร์โทรศัพท์ที่ท่านสะดวกให้ติดต่อกลับเพื่อทำการนัดหมาย (เฉพาะในช่วงมกราคม พ.ศ.2557 – กุมภาพันธ์ พ.ศ.2558)</h3>
+		</div>
 		<input type="text" data-clear-btn="true" name="inspectThoroughlyPhone" id="inspectThoroughlyPhone" value="" placeholder="เบอร์โทรศัพท์">
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-theme="b" id="saveInspectThoroughlyButton" data-inline="true" class="ui-disabled" onclick=saveInspectThoroughly()>OK</a>
 			<a href="" data-role="button" data-theme="b" id="backInspectThoroughlyButton" data-inline="true"  onclick="backInspectThoroughly()">กลับสู่หน้าหลัก</a>
 		</div>
 	</div>
-
-</div>
 
 </div>
 
@@ -269,18 +284,20 @@ var backlogQuestion = "no";
 		<a href="" data-role="button" data-icon="home" data-iconpos="notext" data-inline="true" onclick=enterHome()></a>
 		<h1>Question</h1>
 	</div>
-	
-	<div class="ui-body ui-body-d ui-corner-all">
-		<div class="ui-body ui-body-c ui-corner-all">
-			<textarea cols="40" rows="10" name="questionMessage" id="questionMessage" placeholder="Message" data-clear-btn="true"></textarea>
-			<input type="email" data-clear-btn="true" name="questionEmail" id="questionEmail" value="" placeholder="E-mail" >
-		</div>
 
-		<div style="text-align:center;">
-			<a href="" data-role="button" data-theme="b" id="sendQuestionButton" data-icon="check" data-inline="true" class="ui-disabled" onclick=sendQuestion()>Send</a>
-			<a href="" data-role="button" id="cancelQuestionButton" data-inline="true" onclick=enterHome()>Cancel</a>
-		</div>
-	</div>
+	<ul data-role="listview" data-theme="d">
+		<li data-role="fieldcontain">
+			<div style="text-align:center;">
+				<textarea cols="40" rows="10" name="questionMessage" id="questionMessage" placeholder="Message" data-clear-btn="true"></textarea>
+				<input type="email" data-clear-btn="true" name="questionEmail" id="questionEmail" value="" placeholder="E-mail" >
+			</div>
+
+			<div style="text-align:center;">
+				<a href="" data-role="button" data-theme="b" id="sendQuestionButton" data-icon="check" data-inline="true" class="ui-disabled" onclick=sendQuestion()>Send</a>
+				<a href="" data-role="button" id="cancelQuestionButton" data-inline="true" onclick=enterHome()>Cancel</a>
+			</div>
+		</li>
+	<ul>
 
 </div>
 
@@ -298,6 +315,8 @@ $("#test").hide();
 $("#learn").hide();
 $("#question").hide();
 $("#about").hide();
+$("#pin").hide();
+$("#name").hide();
 $("#birthDate").hide();
 $("#step1").hide();
 $("#step2").hide();
@@ -317,6 +336,10 @@ var questionMessageVal;
 var questionEmailVal;
 
 var birthDate;
+var pin;
+var name;
+var surname;
+
 var step1;
 var step2;
 var step3;
@@ -351,6 +374,9 @@ var inspectThoroughlyPhoneVal;
 
 function resetValueTest(){
 	birthDate = "0000-00-00";
+	pin = "0000000000000";
+	name = "default";
+	surname = "default";
 	step1 = "default";
 	step2 = "default";
 	step3 = "default";
@@ -441,12 +467,14 @@ function LOG(){
 	var aa =  "birthDate="+birthDate+"&step1="+step1+"&step2="+step2+"&step3="+step3+"&step4="+step4+"&step5Point="+step5Point+"&step5_1="+step5_1+"&step5_2Point="+step5_2Point+"&step5_3="+step5_3+"&step5_3_yes="+step5_3_yes+"&step5_4="+step5_4+"&step5_2_1_pictureAns="+step5_2_1_pictureAns+"&step5_2_2_pictureAns="+step5_2_2_pictureAns+"&step5_2_3_pictureAns="+step5_2_3_pictureAns+"&step5_2_4_pictureAns="+step5_2_4_pictureAns+"&step5_2_1_select="+step5_2_1_select+"&step5_2_2_select="+step5_2_2_select+"&step5_2_3_select="+step5_2_3_select+"&step5_2_4_select="+step5_2_4_select+"&step6="+step6+"&result="+result+"&inspectThoroughlyPhoneVal="+inspectThoroughlyPhoneVal;
 	console.log(aa);
 }
+
 function sentData(){
 	backlog = "inProcess";
-	var data = "birthDate="+birthDate+"&step1="+step1+"&step2="+step2+"&step3="+step3+"&step4="+step4+"&step5Point="+step5Point+"&step5_1="+step5_1+"&step5_2Point="+step5_2Point+"&step5_3="+step5_3+"&step5_3_yes="+step5_3_yes+"&step5_4="+step5_4+"&step5_2_1_pictureAns="+step5_2_1_pictureAns+"&step5_2_2_pictureAns="+step5_2_2_pictureAns+"&step5_2_3_pictureAns="+step5_2_3_pictureAns+"&step5_2_4_pictureAns="+step5_2_4_pictureAns+"&step5_2_1_select="+step5_2_1_select+"&step5_2_2_select="+step5_2_2_select+"&step5_2_3_select="+step5_2_3_select+"&step5_2_4_select="+step5_2_4_select+"&step6="+step6+"&result="+result+"&inspectThoroughlyPhoneVal="+inspectThoroughlyPhoneVal;
+	var data = "pin="+pin+"&name="+name+"&surname="+surname+"&birthDate="+birthDate+"&step1="+step1+"&step2="+step2+"&step3="+step3+"&step4="+step4+"&step5Point="+step5Point+"&step5_1="+step5_1+"&step5_2Point="+step5_2Point+"&step5_3="+step5_3+"&step5_3_yes="+step5_3_yes+"&step5_4="+step5_4+"&step5_2_1_pictureAns="+step5_2_1_pictureAns+"&step5_2_2_pictureAns="+step5_2_2_pictureAns+"&step5_2_3_pictureAns="+step5_2_3_pictureAns+"&step5_2_4_pictureAns="+step5_2_4_pictureAns+"&step5_2_1_select="+step5_2_1_select+"&step5_2_2_select="+step5_2_2_select+"&step5_2_3_select="+step5_2_3_select+"&step5_2_4_select="+step5_2_4_select+"&step6="+step6+"&result="+result+"&inspectThoroughlyPhoneVal="+inspectThoroughlyPhoneVal;
     $.ajax({
 		type: "POST",
 	 	url: "http://sd.preecha.in.th/submitTestData.php",
+	 	//url: "http://localhost/sd/submitTestData.php",
 		data: data,
 	 	success: function(data) {
 			if(data == "success"){	
@@ -601,6 +629,7 @@ $("textarea[id='questionMessage']" ).change(function() {
 		$('#sendQuestionButton').addClass('ui-disabled');
 	}
 });
+
 $("input[id='questionEmail']" ).change(function() {
 	if($("#questionMessage").val() != "" && $("#questionEmail").val() != ""){
 		$('#sendQuestionButton').removeClass('ui-disabled');
@@ -621,6 +650,8 @@ function enterAbout(){
 
 function enterDisclaimer(){
 	$("#disclaimer").show();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -644,9 +675,77 @@ function checkButtonDisclaimer(d) {
 	}
 }
 
+function enterPin(){
+	$("#disclaimer").hide();
+	$("#pin").show();
+	$("#name").hide();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+}
+
+$("input[id='pinBox']" ).change(function() {
+	if($("#pinBox").val() != ""){
+		$('#nextPin').removeClass('ui-disabled');
+		pin = $("#pinBox").val();
+	}
+	else{
+		$('#nextPin').addClass('ui-disabled');
+	}
+});
+
+
+function enterName(){
+	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").show();
+	$("#birthDate").hide();
+	$("#step1").hide();
+	$("#step2").hide();
+	$("#step3").hide();
+	$("#step4").hide();
+	$("#result1").hide();
+	$("#result2").hide();
+	$("#result3").hide();
+	$("#result4").hide();
+	$("#result5").hide();
+	$("#languageDevelopment").hide();
+	$("#inspectThoroughly").hide();
+}
+
+$("input[id='nameBox']" ).change(function() {
+	if($("#nameBox").val() != "" && $("#surnameBox").val() != ""){
+		$('#nextPin').removeClass('ui-disabled');
+		name = $("#nameBox").val();
+	}
+	else{
+		$('#nextPin').addClass('ui-disabled');
+	}
+});
+
+$("input[id='surnameBox']" ).change(function() {
+	if($("#nameBox").val() != "" && $("#surnameBox").val() != ""){
+		$('#nextName').removeClass('ui-disabled');
+		surname = $("#nameBox").val();
+	}
+	else{
+		$('#nextName').addClass('ui-disabled');
+	}
+});
 
 function enterBirthDate(){
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").show();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -662,18 +761,20 @@ function enterBirthDate(){
 }
 
 $( "input[type='date']" ).change(function() {
-		//birth date check
-		if ($('#birthDateBox').val() != "") {
-			$('#nextbirthDate').removeClass('ui-disabled');
-			birthDate = $('#birthDateBox').val();
-		} else {
-			$('#nextbirthDate').addClass('ui-disabled');
-		}
+	//birth date check
+	if ($('#birthDateBox').val() != "") {
+		$('#nextbirthDate').removeClass('ui-disabled');
+		birthDate = $('#birthDateBox').val();
+	} else {
+		$('#nextbirthDate').addClass('ui-disabled');
+	}
 });
 
 function enterStep1() {
 	//clearInterval(CheckDate);
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").show();
 	$("#step2").hide();
@@ -702,6 +803,8 @@ function step1SelectYes() {
 
 function enterStep2() {
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").show();
@@ -742,6 +845,8 @@ $( "input[type='range']" ).change(function() {
 
 function enterStep3() {
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -770,6 +875,8 @@ function step3SelectYes() {
 
 function enterStep4() {
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -802,6 +909,8 @@ function checkSpeechWordStep4Value(){
 
 function enterStep5() {
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -1094,7 +1203,7 @@ function nextStep5_2_2(){
 	$('#nextStep5_2').attr('onclick','nextStep5_2_3()');
 }
 function nextStep5_2_3(){
-	$('#step5_2Topic').text('2.4 ชี้ภาพบอล');
+	$('#step5_2Topic').text('2.4 ชี้ภาพรองเท้า');
 	deselectStep5_2Picture();
 	$('#nextStep5_2').addClass('ui-disabled');
 	$('#cantStep5_2').attr('onclick','cantStep5_2_4()');
@@ -1182,6 +1291,8 @@ function calStep5(){
 
 function enterStep6(){
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -1224,6 +1335,8 @@ function enterResult1() {
 	$('#backLanguageDevelopment').attr('onclick','enterResult1()');
 
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -1247,6 +1360,8 @@ function enterResult2() {
 	$('#backLanguageDevelopment').attr('onclick','enterResult2()');
 
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -1270,6 +1385,8 @@ function enterResult3() {
 	$('#backLanguageDevelopment').attr('onclick','enterResult3()');
 
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -1293,6 +1410,8 @@ function enterResult4() {
 	$('#backLanguageDevelopment').attr('onclick','enterResult4()');
 
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -1316,6 +1435,8 @@ function enterResult5() {
 	$('#backLanguageDevelopment').attr('onclick','enterResult5()');
 
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -1336,6 +1457,8 @@ function enterResult5() {
 
 function enterLanguageDevelopment(){
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
@@ -1355,6 +1478,8 @@ function enterLanguageDevelopment(){
 
 function enterInspectThoroughly() {
 	$("#disclaimer").hide();
+	$("#pin").hide();
+	$("#name").hide();
 	$("#birthDate").hide();
 	$("#step1").hide();
 	$("#step2").hide();
