@@ -731,6 +731,7 @@ $("input[id='nameBox']" ).change(function() {
 	if($("#nameBox").val() != "" && $("#surnameBox").val() != ""){
 		$('#nextPin').removeClass('ui-disabled');
 		name = $("#nameBox").val();
+		surname = $("#nameBox").val();
 	}
 	else{
 		$('#nextPin').addClass('ui-disabled');
@@ -740,6 +741,7 @@ $("input[id='nameBox']" ).change(function() {
 $("input[id='surnameBox']" ).change(function() {
 	if($("#nameBox").val() != "" && $("#surnameBox").val() != ""){
 		$('#nextName').removeClass('ui-disabled');
+		name = $("#nameBox").val();
 		surname = $("#nameBox").val();
 	}
 	else{
