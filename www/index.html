@@ -47,7 +47,7 @@ var backlogQuestion = "no";
 		<label><input type="checkbox" name="disclaimer" onclick="checkButtonDisclaimer(this);">ข้าพเจ้าเข้าใจข้อความดังกล่าวข้างต้นแล้ว และยินยอมให้เก็บข้อมูลเพื่อนำไปใช้ประโยชน์</label>
 		<div style="text-align:center;">
 			<a href="" data-role="button" data-inline="true" id="acceptButton" data-theme="b"  class="ui-disabled" onclick=enterPin()>Accept</a>
-			<a href="" data-role="button" data-inline="true">Cancel</a>
+			<a href="" data-role="button" data-inline="true" onclick="cancelDisclaimer()">Cancel</a>
 		</div>
 	</div>
 
@@ -478,9 +478,9 @@ function sentData(){
 		data: data,
 	 	success: function(data) {
 			if(data == "success"){	
-				//location.reload();
-				alert("SUSSESS!!");
+				alert("SUCCESS!!");
 				backlog = "no";
+				location.reload();
 			}
 			else if (data == "fail"){
 				alert("Fail!!");
@@ -529,6 +529,7 @@ function checkBacklogQuestion(){
 }
 
 function enterHome(){
+	//location.reload();
 	checkBacklog();
 	checkBacklogQuestion();
 	deselectHome();
@@ -542,7 +543,7 @@ function enterHome(){
 function deselectHome(){
 	
 }
-
+	
 function enterTest(){
 	$("#home").hide();
 	$("#test").show();
@@ -673,6 +674,10 @@ function checkButtonDisclaimer(d) {
 	} else {
 		$('#acceptButton').addClass('ui-disabled');
 	}
+}
+function cancelDisclaimer() {
+	location.reload();
+	enterHome();
 }
 
 function enterPin(){
